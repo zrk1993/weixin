@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
-
 var parseString = require('xml2js').parseString;
 
 var token = "zhengrenkun"; //微信验证token
@@ -15,25 +14,59 @@ router.get('/', function(req, res, next) {
         if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
         }else {
-            res.send(messageHandler(arg,req.body));//微信消息处理
+            parseString(xml, function (err, result) {
+                res.send(messageHandler(result));//微信消息处理
+            });
         }
     }else {
         res.send(arg["erro"]);
     }
 });
+function messageHandler(message) {
+    var FromUserName=message.FromUserName,
+        ToUserName=message.ToUserName,
+        CreateTime=message.CreateTime,
+        MsgType=messageMsgType,
+        result;
+    switch(MsgType)
+    {
+        case "text":
+            result="<xml>"+
+                    "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
+                    "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
+                    "<CreateTime>12345678</CreateTime>"+
+                    "<MsgType><![CDATA[text]]></MsgType>"+
+                    "<Content><![CDATA[wocao]]></Content>"+
+                    "</xml>";
+            break;
+        case "image":
+
+            break;
+        case "voice":
+
+            break;
+        case "video":
+
+            break;
+        case "shortvideo":
+
+            break;
+        case "location":
+
+            break;
+        case "link":
+
+            break;
+        default:
+            ;
+    }
+    return result;
+}
 //微信消息处理函数
 function messageHandler(arg,body) {
-    /*parseString(body, function (err, result) {
-        var FromUserName=result.FromUserName;
+    parseString(xml, function (err, result) {
+        return result;
     });
-    var r= "<xml>"+
-        "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
-        "<FromUserName><![CDATA[gh_c5424fbd0ab4]]></FromUserName>"+
-        "<CreateTime>12345678</CreateTime>"+
-        "<MsgType><![CDATA[text]]></MsgType>"+
-        "<Content><![CDATA[你好]]></Content>"+
-        "</xml>";*/
-    return "success";
 }
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。
 function isFromWeixin(arg) {

@@ -4,9 +4,13 @@ var parseString = require('xml2js').parseString;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    var xml = '<?xml version="1.0" encoding="UTF-8" ?><business><company>Code Blog</company><owner>Nic Raboy</owner><employee><firstname>Nic</firstname><lastname>Raboy</lastname></employee><employee><firstname>Maria</firstname><lastname>Campos</lastname></employee></business>';
+    var xml = "<root>Hello xml2js!</root>";
     parseString(xml, function (err, result) {
-        res.send(result.business);
+        var s=messageHandler(result);
+        res.send(s);
     });
 });
+function messageHandler(result) {
+    return result;
+}
 module.exports = router;

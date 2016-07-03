@@ -14,12 +14,13 @@ router.get('/', function(req, res, next) {
         if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
         }else {
-            parseString(xml, function (err, result) {
-                res.send("success");//微信消息处理
-            });
+            res.send("success");//微信消息处理
+            //parseString(xml, function (err, result) {
+                //res.send("success");//微信消息处理
+            //});
         }
     }else {
-        res.send(arg["erro"]);
+        res.send("erro");
     }
 });
 function messageHandler(message) {

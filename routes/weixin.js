@@ -26,13 +26,14 @@ function messageHandler(arg,body) {
     parseString(body, function (err, result) {
         var FromUserName=result.FromUserName;
     });
-    return "<xml>"+
+    var r= "<xml>"+
         "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
         "<FromUserName><![CDATA[gh_c5424fbd0ab4]]></FromUserName>"+
         "<CreateTime>12345678</CreateTime>"+
         "<MsgType><![CDATA[text]]></MsgType>"+
         "<Content><![CDATA[你好]]></Content>"+
         "</xml>";
+    return "success";
 }
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。
 function isFromWeixin(arg) {

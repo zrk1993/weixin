@@ -79,12 +79,7 @@ function messageHandler(message) {
     console.log(result);
     return result;
 }
-//微信消息处理函数
-function messageHandler(arg,body) {
-    parseString(xml, function (err, result) {
-        return result;
-    });
-}
+
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。
 function isFromWeixin(arg) {
     var signature = arg["signature"],
@@ -104,8 +99,11 @@ function isFromWeixin(arg) {
 
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if(code===signature){
+        console.log("true");
         return true;
+
     }else{
+        console.log("false");
         return  false;
     }
 }

@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
             res.send(arg["echostr"]);
         }else {
             parseString(xml, function (err, result) {
-                res.send(messageHandler(result));//微信消息处理
+                res.send("success");//微信消息处理
             });
         }
     }else {

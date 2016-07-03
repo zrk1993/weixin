@@ -14,10 +14,9 @@ router.get('/', function(req, res, next) {
         if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
         }else {
-            res.send("success");//微信消息处理
-            //parseString(xml, function (err, result) {
-                //res.send("success");//微信消息处理
-            //});
+            parseString(req.body, function (err, result) {
+                res.send(messageHandler(result));//微信消息处理
+            });
         }
     }else {
         res.send("erro");
@@ -34,11 +33,12 @@ function messageHandler(message) {
         case "text":
             result="<xml>"+
                     "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
-                    "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
+                    "<FromUserName><![CDATA["+weixinhao+"]]></FromUserName>"+
                     "<CreateTime>12345678</CreateTime>"+
                     "<MsgType><![CDATA[text]]></MsgType>"+
                     "<Content><![CDATA[wocao]]></Content>"+
                     "</xml>";
+
             break;
         case "image":
 
@@ -61,6 +61,14 @@ function messageHandler(message) {
         default:
             ;
     }
+
+    result="<xml>"+
+        "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
+        "<FromUserName><![CDATA["+weixinhao+"]]></FromUserName>"+
+        "<CreateTime>"+data.getTime()+"</CreateTime>"+
+        "<MsgType><![CDATA[text]]></MsgType>"+
+        "<Content><![CDATA[wocao]]></Content>"+
+        "</xml>";
     return result;
 }
 //微信消息处理函数

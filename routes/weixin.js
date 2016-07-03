@@ -12,6 +12,6 @@ function checkSignature(arg) {
     $signature = arg["signature"];
     $timestamp = arg["timestamp"];
     $nonce = arg["nonce"];
-    return $signature;
+    return arg["echostr"];
 }
 module.exports = router;

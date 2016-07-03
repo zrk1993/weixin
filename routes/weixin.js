@@ -14,13 +14,17 @@ router.get('/', function(req, res, next) {
     if(isFromWeixin(arg)){
         if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
+            console.log("0000");
         }else {
+            console.log("1111");
             console.log(req.body);
             parseString(req.body, function (err, result) {
                 res.send(messageHandler(result));//微信消息处理
+                console.log("3333");
             });
         }
     }else {
+        console.log("22222");
         res.send("erro");
     }
 });

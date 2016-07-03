@@ -10,10 +10,12 @@ var weixinhao="gh_c5424fbd0ab4";
 
 router.get('/', function(req, res, next) {
     var arg = URL.parse(req.url, true).query;
+    console.log(arg);
     if(isFromWeixin(arg)){
         if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
         }else {
+            console.log(req.body);
             parseString(req.body, function (err, result) {
                 res.send(messageHandler(result));//微信消息处理
             });
@@ -28,6 +30,7 @@ function messageHandler(message) {
         CreateTime=message.CreateTime,
         MsgType=messageMsgType,
         result;
+    console.log(FromUserName);
     switch(MsgType)
     {
         case "text":
@@ -69,6 +72,7 @@ function messageHandler(message) {
         "<MsgType><![CDATA[text]]></MsgType>"+
         "<Content><![CDATA[wocao]]></Content>"+
         "</xml>";
+    console.log(result);
     return result;
 }
 //微信消息处理函数

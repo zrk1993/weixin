@@ -11,8 +11,10 @@ var weixinhao="gh_c5424fbd0ab4";
 router.get('/', function(req, res, next) {
     var arg = URL.parse(req.url, true).query;
     console.log(arg);
+    console.log("body------"+req.body);
     if(isFromWeixin(arg)){
-        if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
+        console.log("99999");
+        if (false){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
             console.log("0000");
         }else {

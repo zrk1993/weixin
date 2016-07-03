@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 });
 //微信消息处理函数
 function messageHandler(arg,body) {
-    parseString(body, function (err, result) {
+    /*parseString(body, function (err, result) {
         var FromUserName=result.FromUserName;
     });
     var r= "<xml>"+
@@ -32,7 +32,7 @@ function messageHandler(arg,body) {
         "<CreateTime>12345678</CreateTime>"+
         "<MsgType><![CDATA[text]]></MsgType>"+
         "<Content><![CDATA[你好]]></Content>"+
-        "</xml>";
+        "</xml>";*/
     return "success";
 }
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。

@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
-var parseString = require('xml2js').parseString;
+var select = require('xpath.js');
+var dom = require('xmldom').DOMParser;
 
 
 var token = "zhengrenkun"; //微信验证token
@@ -43,18 +44,19 @@ router.post('/', function(req, res,next) {
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
         parseString(data, function (err, result) {
-            res.send(messageHandler(result.xml));//微信消息处理
+            console.log(result);
+            res.send(messageHandler(result));//微信消息处理
             console.log(result);
         });
         next();
     })
 });
 function messageHandler(message) {
-
-    var FromUserName=message.FromUserName[0],
-        ToUserName=message.ToUserName[0],
-        CreateTime=message.CreateTime[0],
-        MsgType=messageMsgType[0],
+    var doc = new dom().parseFromString(message);
+    var FromUserName=select(doc, "//FromUserName").firstChild.data,
+        ToUserName=select(doc, "//ToUserName").firstChild.data,
+        CreateTime=select(doc, "//CreateTime").firstChild.data,
+        MsgType=select(doc, "//MsgType").firstChild.data,
         result;
     console.log(FromUserName);
     switch(MsgType)

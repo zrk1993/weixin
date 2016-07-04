@@ -22,10 +22,8 @@ router.get('/', function(req, res, next) {
         }else {
             console.log("1111");
             console.log(req.body.toString());
-            parseString(req.body, function (err, result) {
-                res.send(messageHandler(result));//微信消息处理
-                console.log("3333");
-            });
+
+
         }
     }else {
         console.log("22222");
@@ -43,16 +41,14 @@ router.post('/', function(req, res,next) {
     req.on("end",function(){
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
-        parseString(data, function (err, result) {
             console.log(result);
-            res.send(messageHandler(result));//微信消息处理
+            res.send(messageHandler(data));//微信消息处理
             console.log(result);
-        });
-        next();
+
     })
 });
-function messageHandler(message) {
-    var doc = new dom().parseFromString(message);
+function messageHandler(data) {
+    var doc = new dom().parseFromString(data);
     var FromUserName=select(doc, "//FromUserName").firstChild.data,
         ToUserName=select(doc, "//ToUserName").firstChild.data,
         CreateTime=select(doc, "//CreateTime").firstChild.data,

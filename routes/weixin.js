@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
             console.log("0000");
         }else {
             console.log("1111");
-            console.log(req.body);
+            console.log(req.body.toString());
             parseString(req.body, function (err, result) {
                 res.send(messageHandler(result));//微信消息处理
                 console.log("3333");

@@ -3,13 +3,11 @@ var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
 var parseString = require('xml2js').parseString;
-var bodyParser = require("body-parser");
+
 
 var token = "zhengrenkun"; //微信验证token
 var weixinhao="gh_c5424fbd0ab4";
 
-router.use(bodyParser.urlencoded({extended: false}));
-router.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
     var arg = URL.parse(req.url, true).query;

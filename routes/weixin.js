@@ -31,10 +31,27 @@ router.get('/', function(req, res, next) {
         res.send("erro");
     }
 });
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
     var arg = URL.parse(req.url, true).query;
     console.log(arg);
-    console.log("body------"+req.body);
+
+    var arr = [];
+    req.on("data",function(data){
+        arr.push(data);
+    });
+    req.on("end",function(){
+        var data= Buffer.concat(arr).toString(),ret;
+        try{
+            var ret = JSON.parse(data);
+        }catch(err){}
+        req.body = ret;
+        console.log("body------"+req.body);
+        next();
+    })
+
+
+
+
     if(isFromWeixin(arg)){
         console.log("99999");
         if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。

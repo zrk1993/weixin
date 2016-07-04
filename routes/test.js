@@ -10,6 +10,13 @@ router.get('/', function(req, res, next) {
         res.send(s);
     });
 });
+router.post('/', function(req, res, next) {
+    var xml = "<root>Hello xml2js!</root>";
+    parseString(xml, function (err, result) {
+        var s=messageHandler(result);
+        res.send(s);
+    });
+});
 function messageHandler(result) {
     return result;
 }

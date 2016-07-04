@@ -46,10 +46,10 @@ router.post('/', function(req, res,next) {
 });
 function messageHandler(data) {
     var doc = new dom().parseFromString(data);
-    var FromUserName=select(doc, "//FromUserName").firstChild.data,
-        ToUserName=select(doc, "//ToUserName").firstChild.data,
-        CreateTime=select(doc, "//CreateTime").firstChild.data,
-        MsgType=select(doc, "//MsgType").firstChild.data,
+    var FromUserName=select(doc, "//FromUserName")[0].firstChild.data,
+        ToUserName=select(doc, "//ToUserName")[0].firstChild.data,
+        CreateTime=select(doc, "//CreateTime")[0].firstChild.data,
+        MsgType=select(doc, "//MsgType")[0].firstChild.data,
         result;
     console.log(FromUserName);
     switch(MsgType)

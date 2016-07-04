@@ -11,8 +11,8 @@ router.get('/', function(req, res, next) {
     var xml = "<book><title>Harry Potter</title></book>"
     var doc = new dom().parseFromString(xml)
     var nodes = select(doc, "//title")
-    res.send(nodes[0].localName + ": " + nodes[0].firstChild.data)
-    res.send("node: " + nodes[0].toString())
+    res.send(nodes[0].firstChild.data)
+
 
 });
 function messageHandler(result) {

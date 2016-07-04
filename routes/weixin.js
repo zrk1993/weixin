@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
             console.log("0000");
         }else {
             console.log("1111");
-            console.log(req.body.toString());
+
 
 
         }
@@ -41,10 +41,7 @@ router.post('/', function(req, res,next) {
     req.on("end",function(){
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
-            console.log(result);
-            res.send(messageHandler(data));//微信消息处理
-            console.log(result);
-
+        res.send(messageHandler(data));//微信消息处理
     })
 });
 function messageHandler(data) {

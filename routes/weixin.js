@@ -40,36 +40,14 @@ router.post('/', function(req, res,next) {
         arr.push(data);
     });
     req.on("end",function(){
-        var data= Buffer.concat(arr).toString(),ret;
+        var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
-        try{
-            var ret = JSON.parse(data);
-        }catch(err){}
-        req.body = ret;
-        console.log("body------"+req.body);
+        parseString(data, function (err, result) {
+            res.send(messageHandler(result));//微信消息处理
+            console.log(result);
+        });
         next();
     })
-
-
-
-
-    if(isFromWeixin(arg)){
-        console.log("99999");
-        if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
-            res.send(arg["echostr"]);
-            console.log("0000");
-        }else {
-            console.log("1111");
-            console.log(req.body);
-            parseString(req.body, function (err, result) {
-                res.send(messageHandler(result));//微信消息处理
-                console.log("3333");
-            });
-        }
-    }else {
-        console.log("22222");
-        res.send("erro");
-    }
 });
 function messageHandler(message) {
     var FromUserName=message.FromUserName,
@@ -83,7 +61,7 @@ function messageHandler(message) {
         case "text":
             result="<xml>"+
                     "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
-                    "<FromUserName><![CDATA["+weixinhao+"]]></FromUserName>"+
+                    "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
                     "<CreateTime>12345678</CreateTime>"+
                     "<MsgType><![CDATA[text]]></MsgType>"+
                     "<Content><![CDATA[wocao]]></Content>"+
@@ -114,7 +92,7 @@ function messageHandler(message) {
 
     result="<xml>"+
         "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
-        "<FromUserName><![CDATA["+weixinhao+"]]></FromUserName>"+
+        "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
         "<CreateTime>"+data.getTime()+"</CreateTime>"+
         "<MsgType><![CDATA[text]]></MsgType>"+
         "<Content><![CDATA[wocao]]></Content>"+

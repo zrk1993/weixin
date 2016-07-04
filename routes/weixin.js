@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
         res.send("erro");
     }
 });
-router.post('/', function(req, res) {
+router.post('/', function(req, res,next) {
     var arg = URL.parse(req.url, true).query;
     console.log(arg);
 
@@ -41,6 +41,7 @@ router.post('/', function(req, res) {
     });
     req.on("end",function(){
         var data= Buffer.concat(arr).toString(),ret;
+        console.log("data------"+data);
         try{
             var ret = JSON.parse(data);
         }catch(err){}

@@ -43,17 +43,18 @@ router.post('/', function(req, res,next) {
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
         parseString(data, function (err, result) {
-            res.send(messageHandler(result));//微信消息处理
+            res.send(messageHandler(result.xml));//微信消息处理
             console.log(result);
         });
         next();
     })
 });
 function messageHandler(message) {
-    var FromUserName=message.FromUserName,
-        ToUserName=message.ToUserName,
-        CreateTime=message.CreateTime,
-        MsgType=messageMsgType,
+
+    var FromUserName=message.FromUserName[0],
+        ToUserName=message.ToUserName[0],
+        CreateTime=message.CreateTime[0],
+        MsgType=messageMsgType[0],
         result;
     console.log(FromUserName);
     switch(MsgType)

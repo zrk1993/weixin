@@ -89,7 +89,7 @@ function messageHandler(data) {
     result="<xml>"+
         "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
         "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
-        "<CreateTime>"+data.getTime()+"</CreateTime>"+
+        "<CreateTime>111112</CreateTime>"+
         "<MsgType><![CDATA[text]]></MsgType>"+
         "<Content><![CDATA[wocao]]></Content>"+
         "</xml>";

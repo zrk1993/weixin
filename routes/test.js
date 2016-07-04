@@ -8,10 +8,7 @@ var dom = require('xmldom').DOMParser;
 router.get('/', function(req, res, next) {
 
 
-    var xml = "<book><title>Harry Potter</title></book>"
-    var doc = new dom().parseFromString(xml)
-    var nodes = select(doc, "//title")
-    res.send(nodes[0].firstChild.data)
+    res.send(new Data())
 
 
 });

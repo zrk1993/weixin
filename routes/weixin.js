@@ -3,11 +3,13 @@ var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
 var parseString = require('xml2js').parseString;
+var bodyParser = require("body-parser");
 
 var token = "zhengrenkun"; //微信验证token
 var weixinhao="gh_c5424fbd0ab4";
 
-
+router.use(bodyParser.urlencoded({extended: false}));
+router.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
     var arg = URL.parse(req.url, true).query;
@@ -102,7 +104,7 @@ function messageHandler(message) {
         "<Content><![CDATA[wocao]]></Content>"+
         "</xml>";
     console.log(result);
-    return "sucess";
+    return result;
 }
 
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。

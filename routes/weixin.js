@@ -8,6 +8,7 @@ var token = "zhengrenkun"; //微信验证token
 var weixinhao="gh_c5424fbd0ab4";
 
 
+
 router.get('/', function(req, res, next) {
     var arg = URL.parse(req.url, true).query;
     console.log(arg);
@@ -15,6 +16,28 @@ router.get('/', function(req, res, next) {
     if(isFromWeixin(arg)){
         console.log("99999");
         if (false){//如果url带有echostr参数，说明是微信接入验证。
+            res.send(arg["echostr"]);
+            console.log("0000");
+        }else {
+            console.log("1111");
+            console.log(req.body);
+            parseString(req.body, function (err, result) {
+                res.send(messageHandler(result));//微信消息处理
+                console.log("3333");
+            });
+        }
+    }else {
+        console.log("22222");
+        res.send("erro");
+    }
+});
+router.post('/', function(req, res, next) {
+    var arg = URL.parse(req.url, true).query;
+    console.log(arg);
+    console.log("body------"+req.body);
+    if(isFromWeixin(arg)){
+        console.log("99999");
+        if (arg["echostr"]){//如果url带有echostr参数，说明是微信接入验证。
             res.send(arg["echostr"]);
             console.log("0000");
         }else {
@@ -79,7 +102,7 @@ function messageHandler(message) {
         "<Content><![CDATA[wocao]]></Content>"+
         "</xml>";
     console.log(result);
-    return result;
+    return "sucess";
 }
 
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。

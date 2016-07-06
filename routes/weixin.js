@@ -4,7 +4,7 @@ var URL = require('url');
 var crypto = require('crypto');
 var select = require('xpath.js');
 var dom = require('xmldom').DOMParser;
-
+var parseString = require('xml2js').parseString;
 
 var token = "zhengrenkun"; //微信验证token
 var weixinhao="gh_c5424fbd0ab4";
@@ -41,15 +41,18 @@ router.post('/', function(req, res,next) {
     req.on("end",function(){
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
+        parseString(data, function (err, result) {
+            console.log("result------"+result);
+        });
         res.send(messageHandler(data));//微信消息处理
     })
 });
 function messageHandler(data) {
-    var doc = new dom().parseFromString(data);
-    var FromUserName=select(doc, "//FromUserName")[0].firstChild.data,
-        ToUserName=select(doc, "//ToUserName")[0].firstChild.data,
-        CreateTime=select(doc, "//CreateTime")[0].firstChild.data,
-        MsgType=select(doc, "//MsgType")[0].firstChild.data,
+    var xml = new dom().parseFromString(data);
+    var FromUserName=getDataFromXml(xml,"FromUserName"),
+        ToUserName=getDataFromXml(xml,"FromUserName"),
+        CreateTime=getDataFromXml(xml,"FromUserName"),
+        MsgType=getDataFromXml(xml,"FromUserName"),
         result;
     console.log(FromUserName);
     switch(MsgType)
@@ -123,5 +126,8 @@ function isFromWeixin(arg) {
         console.log("false");
         return  false;
     }
+}
+function getDataFromXml(xml,key) {
+    return select(xml, "//"+key)[0].firstChild.data;
 }
 module.exports = router;

@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var select = require('xpath.js');
-var dom = require('xmldom').DOMParser;
+var parseString = require('xml2js').parseString;
 
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
 
 
-    res.send(new Data())
-
+    var xml = "<root>Hello xml2js!</root>"
+    parseString(xml, function (err, result) {
+        res.send("2");
+    });
 
 });
-function messageHandler(result) {
-    return result;
-}
+
 module.exports = router;

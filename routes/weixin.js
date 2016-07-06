@@ -42,7 +42,7 @@ router.post('/', function(req, res,next) {
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
         parseString(data, function (err, result) {
-            console.log("result------"+result);
+            console.log("result------"+JSON.stringify(result));
         });
         res.send(messageHandler(data));//微信消息处理
     })

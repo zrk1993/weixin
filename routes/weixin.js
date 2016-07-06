@@ -43,17 +43,16 @@ router.post('/', function(req, res,next) {
         console.log("data------"+data);
         parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
             console.log("result------"+JSON.stringify(result));
-            res.send(messageHandler(data));//微信消息处理
         });
-
+        res.send(messageHandler(data));//微信消息处理
     })
 });
 function messageHandler(data) {
     var xml = new dom().parseFromString(data);
     var FromUserName=getDataFromXml(xml,"FromUserName"),
-        ToUserName=getDataFromXml(xml,"FromUserName"),
-        CreateTime=getDataFromXml(xml,"FromUserName"),
-        MsgType=getDataFromXml(xml,"FromUserName"),
+        ToUserName=getDataFromXml(xml,"ToUserName"),
+        CreateTime=getDataFromXml(xml,"CreateTime"),
+        MsgType=getDataFromXml(xml,"MsgType"),
         result;
     console.log(FromUserName);
     switch(MsgType)

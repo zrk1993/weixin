@@ -41,10 +41,11 @@ router.post('/', function(req, res,next) {
     req.on("end",function(){
         var data= Buffer.concat(arr).toString();
         console.log("data------"+data);
-        parseString(data, function (err, result) {
+        parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
             console.log("result------"+JSON.stringify(result));
+            res.send(messageHandler(data));//微信消息处理
         });
-        res.send(messageHandler(data));//微信消息处理
+
     })
 });
 function messageHandler(data) {

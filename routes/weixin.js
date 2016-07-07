@@ -7,8 +7,9 @@ var parseString = require('xml2js').parseString;
 var token = "zhengrenkun"; //微信验证token
 
 router.use('/',function (req,res,next) {
+    var arg = URL.parse(req.url, true).query;
     if(isFromWeixin(arg)){
-        req.arg = URL.parse(req.url, true).query;
+        req.arg = arg;
         next();
     }else {
         res.end();
@@ -16,12 +17,12 @@ router.use('/',function (req,res,next) {
 });
 
 //微信的验证
-router.get('/', function(req, res, next) {
-    res.send(arg["echostr"]);
+router.get('/', function(req, res) {
+    res.send(req.arg["echostr"]);
 });
 
 //接收微信消息
-router.post('/', function(req, res,next) {
+router.post('/', function(req, res) {
     var arg = req.arg;
     console.log(arg);
 

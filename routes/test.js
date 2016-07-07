@@ -7,9 +7,13 @@ var parseString = require('xml2js').parseString;
 router.get('/', function(req, res, next) {
 
 
-    var xml = "<root>Hello xml2js!</root>"
+    var xml = "<rootq</root>"
     parseString(xml, function (err, result) {
-        res.send("2");
+        if(err){
+            res.send("err");
+        }else {
+            res.send("ok");
+        }
     });
 
 });

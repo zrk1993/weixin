@@ -3,9 +3,11 @@ var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
 var parseString = require('xml2js').parseString;
+var wxMsgHandler = require('../bin/weixin/wxMsgHandler');
 
 var token = "zhengrenkun"; //微信验证token
 
+//中间件 判断消息是否来自微信。并且将请求参数格式化为json,保存在 req.arg
 router.use('/',function (req,res,next) {
     var arg = URL.parse(req.url, true).query;
     if(isFromWeixin(arg)){
@@ -21,7 +23,7 @@ router.get('/', function(req, res) {
     res.send(req.arg["echostr"]);
 });
 
-//接收微信消息
+//接收微信消息,并处理
 router.post('/', function(req, res) {
     var arg = req.arg;
     console.log(arg);
@@ -32,67 +34,16 @@ router.post('/', function(req, res) {
     });
     req.on("end",function(){
         var data= Buffer.concat(arr).toString();
-        var json;
-        console.log("data------"+data);
         parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
-            json=result;
-            console.log("result------"+JSON.stringify(result));
+            if (err){
+                console.log("xml to json err");
+            }
+            else {data=result;}
         });
-        console.log("json------"+json)
-        res.send(messageHandler(json.xml));//微信消息处理
+        console.log("微信消息》》》"+data)
+        res.send(wxMsgHandler(data.xml));//微信消息处理. data.xml->微信消息
     })
 });
-function messageHandler(json) {
-    var FromUserName=json.FromUserName,
-        ToUserName=json.ToUserName,
-        CreateTime=json.CreateTime,
-        MsgType=json.MsgType,
-        result;
-    switch(MsgType)
-    {
-        case "text":
-            result="<xml>"+
-                    "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
-                    "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
-                    "<CreateTime>12345678</CreateTime>"+
-                    "<MsgType><![CDATA[text]]></MsgType>"+
-                    "<Content><![CDATA[wocao]]></Content>"+
-                    "</xml>";
-
-            break;
-        case "image":
-
-            break;
-        case "voice":
-
-            break;
-        case "video":
-
-            break;
-        case "shortvideo":
-
-            break;
-        case "location":
-
-            break;
-        case "link":
-
-            break;
-        default:
-            ;
-    }
-
-    result="<xml>"+
-        "<ToUserName><![CDATA["+FromUserName+"]]></ToUserName>"+
-        "<FromUserName><![CDATA["+ToUserName+"]]></FromUserName>"+
-        "<CreateTime>111112</CreateTime>"+
-        "<MsgType><![CDATA[text]]></MsgType>"+
-        "<Content><![CDATA[wocao]]></Content>"+
-        "</xml>";
-    console.log(result);
-    return result;
-}
-
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。
 function isFromWeixin(arg) {
     var signature = arg["signature"],

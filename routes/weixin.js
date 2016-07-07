@@ -35,21 +35,19 @@ router.post('/', function(req, res) {
         var json;
         console.log("data------"+data);
         parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
+            json=result;
             console.log("result------"+JSON.stringify(result));
-            json=JSON.stringify(result);
         });
         console.log("json------"+json)
-        res.send(messageHandler(data));//微信消息处理
+        res.send(messageHandler(json.xml));//微信消息处理
     })
 });
-function messageHandler(data) {
-    var xml = new dom().parseFromString(data);
-    var FromUserName=getDataFromXml(xml,"FromUserName"),
-        ToUserName=getDataFromXml(xml,"ToUserName"),
-        CreateTime=getDataFromXml(xml,"CreateTime"),
-        MsgType=getDataFromXml(xml,"MsgType"),
+function messageHandler(json) {
+    var FromUserName=json.FromUserName,
+        ToUserName=json.ToUserName,
+        CreateTime=json.CreateTime,
+        MsgType=json.MsgType,
         result;
-    console.log(FromUserName);
     switch(MsgType)
     {
         case "text":
@@ -114,15 +112,9 @@ function isFromWeixin(arg) {
 
     //3. 开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if(code===signature){
-        console.log("true");
         return true;
-
     }else{
-        console.log("false");
         return  false;
     }
-}
-function getDataFromXml(xml,key) {
-    return select(xml, "//"+key)[0].firstChild.data;
 }
 module.exports = router;

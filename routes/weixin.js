@@ -2,36 +2,27 @@ var express = require('express');
 var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
-var select = require('xpath.js');
-var dom = require('xmldom').DOMParser;
 var parseString = require('xml2js').parseString;
 
 var token = "zhengrenkun"; //微信验证token
-var weixinhao="gh_c5424fbd0ab4";
 
-
-router.get('/', function(req, res, next) {
-    var arg = URL.parse(req.url, true).query;
-    console.log(arg);
-    console.log("body------"+req.body);
+router.use('/',function (req,res,next) {
     if(isFromWeixin(arg)){
-        console.log("99999");
-        if (false){//如果url带有echostr参数，说明是微信接入验证。
-            res.send(arg["echostr"]);
-            console.log("0000");
-        }else {
-            console.log("1111");
-
-
-
-        }
+        req.arg = URL.parse(req.url, true).query;
+        next();
     }else {
-        console.log("22222");
-        res.send("erro");
+        res.end();
     }
 });
+
+//微信的验证
+router.get('/', function(req, res, next) {
+    res.send(arg["echostr"]);
+});
+
+//接收微信消息
 router.post('/', function(req, res,next) {
-    var arg = URL.parse(req.url, true).query;
+    var arg = req.arg;
     console.log(arg);
 
     var arr = [];

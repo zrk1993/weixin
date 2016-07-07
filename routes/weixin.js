@@ -26,8 +26,6 @@ router.get('/', function(req, res) {
 //接收微信消息,并处理
 router.post('/', function(req, res) {
     var arg = req.arg;
-    console.log(arg);
-
     var arr = [];
     req.on("data",function(data){
         arr.push(data);
@@ -40,7 +38,7 @@ router.post('/', function(req, res) {
             }
             else {data=result;}
         });
-        console.log("微信消息》》》"+data)
+        console.log("微信消息》》》"+data.xml)
         res.send(wxMsgHandler(data.xml));//微信消息处理. data.xml->微信消息
     })
 });

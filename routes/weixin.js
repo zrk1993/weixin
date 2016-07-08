@@ -38,7 +38,6 @@ router.post('/', function(req, res) {
             }
             else {data=result;}
         });
-        console.log("微信消息》》》"+data.xml)
         res.send(wxMsgHandler(data.xml));//微信消息处理. data.xml->微信消息
     })
 });

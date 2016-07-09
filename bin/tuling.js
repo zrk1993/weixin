@@ -58,11 +58,11 @@ function pase(msg,data) {
             result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
             break;
         case 200000://链接
-            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text+"/br"+data.url);
+            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text+"。"+data.url);
             break;
         case 302000://新闻
             var news=[];
-            for (var i;i<data.list.length&&i<10;i++){
+            for (var i=0;i<data.list.length&&i<10;i++){
                 var item={};
                 item["Description"]=data.list[i].article;
                 item["Title"]=data.list[i].source;

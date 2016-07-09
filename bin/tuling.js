@@ -15,7 +15,7 @@ var tuling={
     sya:function (msg,answer) {
         var post_data = {
             key:APIKey,
-            info:msg.text,
+            info:msg.Content,
             loc:"厦门市",
             userid:msg.FromUserName
         };
@@ -55,10 +55,10 @@ function pase(msg,data) {
     switch(data.code)
     {
         case 100000://文本
-            result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text);
+            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
             break;
         case 200000://链接
-            result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text+"/br"+data.url);
+            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text+"/br"+data.url);
             break;
         case 302000://新闻
             var news=[];
@@ -70,11 +70,11 @@ function pase(msg,data) {
                 item["Url"]=data.list[i].detailurl
                 news.push(item);
             }            
-            result=wxMsgAnswer.news(msg.ToUserName,msg.FromUserName,msg.CreateTime,news);
+            result=wxMsgAnswer.news(msg.FromUserName,msg.ToUserName,msg.CreateTime,news);
             break;
 
         default:
-            result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text);
+            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
             ;
     }
     return result;

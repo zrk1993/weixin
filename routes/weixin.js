@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
             }
             else {data=result;}
         });
-        wxMsgHandler(data.xml,res);//微信消息处理. data.xml->微信消息.
+        wxMsgHandler(data.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
     })
 });
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。

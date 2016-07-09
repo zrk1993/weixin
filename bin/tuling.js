@@ -1,17 +1,18 @@
 /**
  * Created by RK on 2016/7/9.
  */
-//图灵机器人 网址http://www.tuling123.com/ 绑定qq 1051455824
+//图灵机器人 网址http://www.tuling123.com/ 绑定qq 1051455824 shouji 15159041052
 var http = require('http');
 var qs = require('querystring');
+var wxMsgAnswer = require('./weixin/wxMsgAnswer');
 
 var api_hostname="www.tuling123.com",
     api_path="/openapi/api",
-    APIKey="c2f140e4f9584d9fa7add296b5ccf56e",
-    secret="de8a698ee4c0ece3";
+    APIKey="96f38eeb062fdac768072c4a7e75ab66",
+    secret="3d8931320276acc1";
 
 var tuling={
-    sya:function (userid,info,answer) {
+    sya:function (msg,answer) {
         var post_data = {
             key:APIKey,
             info:info,
@@ -33,8 +34,8 @@ var tuling={
 
         var req = http.request(options, function (res) {
             res.setEncoding('utf8');
-            res.on('data', function (chunk) {
-                answer(chunk);
+            res.on('data', function (data) {
+                answer(pase(msg,data));
             });
         });
 
@@ -47,6 +48,35 @@ var tuling={
         req.end();
     }
 };
+//根据图灵返回的code类型 构建出消息
+function pase(msg,data) {
+    var result;
+    switch(data.code)
+    {
+        case 100000://文本
+            result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text);
+            break;
+        case 200000://链接
+            result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text+"/br"+data.url);
+            break;
+        case 302000://新闻
+            var news=[];
+            for (var i;i<data.list.length;i++){
+                var item={};
+                item["Description"]=data.list[i].article
+                item["Title"]=data.list[i].source
+                item["PicUrl"]=data.list[i].icon
+                item["Url"]=data.list[i].detailurl
+                news.push(item);
+            }            
+            result=wxMsgAnswer.news(msg.ToUserName,msg.FromUserName,msg.CreateTime,news);
+            break;
+
+        default:
+            result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text);
+            ;
+    }
+}
 module.exports = tuling;
 
 

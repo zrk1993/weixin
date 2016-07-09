@@ -36,7 +36,7 @@ var tuling={
             res.setEncoding('utf8');
             res.on('data', function (data) {
                 console.log("tuling"+data);
-                answer(pase(msg,data));
+                answer(pase(msg,JSON.parse(data)));
             });
         });
 

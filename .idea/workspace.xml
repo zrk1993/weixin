@@ -37,8 +37,8 @@
       <file leaf-file-name="tuling.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/tuling.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1274">
-              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+            <state relative-caret-position="126">
+              <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
               <folding>
                 <element signature="e#0#37#0" expanded="false" />
               </folding>
@@ -59,7 +59,7 @@
       <file leaf-file-name="wxMsgAnswer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgAnswer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1950">
+            <state relative-caret-position="-82">
               <caret line="77" column="29" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="29" />
               <folding>
                 <element signature="e#0#37#0" expanded="false" />
@@ -304,12 +304,12 @@
       <workItem from="1467978717950" duration="6424000" />
       <workItem from="1468025842374" duration="227000" />
       <workItem from="1468027507386" duration="1058000" />
-      <workItem from="1468058733087" duration="10413000" />
+      <workItem from="1468058733087" duration="10740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51675000" />
+    <option name="totallyTimeSpent" value="52002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -635,14 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/weixin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -654,9 +646,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgAnswer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
+        <state relative-caret-position="-82">
           <caret line="77" column="29" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="29" />
           <folding>
             <element signature="e#0#37#0" expanded="false" />
@@ -666,8 +666,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/tuling.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1274">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+        <state relative-caret-position="126">
+          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
           <folding>
             <element signature="e#0#37#0" expanded="false" />
           </folding>

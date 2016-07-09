@@ -10,7 +10,7 @@ function wxMsgHandler(msg,res) {
     {
         case "text":
             tuling.sya(msg.FromUserName,msg.Content,function (answer) {
-                var result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,JSON.parse(answer));
+                var result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,JSON.parse(answer).text);
                  res.send(result);
             })
 

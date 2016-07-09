@@ -23,7 +23,7 @@ router.get("/tuling", function (req,res) {
   var arg = URL.parse(req.url, true).query;
   tuling.sya(1234555,arg.info,function (ans) {
     console.log("qqqqqq"+ans)
-    res.send(ans.test);
+    res.send(JSON.parse(ans).text);
   });
 });
 

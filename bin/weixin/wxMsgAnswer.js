@@ -72,7 +72,6 @@ var wxMsgAnswer={
                         "<Url><![CDATA["+items[i].Url+"]]></Url>"+
                       "</item>";
         }
-        console.log("i"+i);
         return "<xml>"+
             "<ToUserName><![CDATA["+ToUserName+"]]></ToUserName>"+
             "<FromUserName><![CDATA["+FromUserName+"]]></FromUserName>"+

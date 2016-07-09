@@ -62,14 +62,15 @@ function pase(msg,data) {
             break;
         case 302000://新闻
             var news=[];
-            for (var i;i<data.list.length;i++){
+            for (var i;i<data.list.length&&i<10;i++){
                 var item={};
                 item["Description"]=data.list[i].article;
                 item["Title"]=data.list[i].source;
                 item["PicUrl"]=data.list[i].icon;
                 item["Url"]=data.list[i].detailurl;
                 news.push(item);
-            }            
+            }
+            console.log("i"+i);
             result=wxMsgAnswer.news(msg.FromUserName,msg.ToUserName,msg.CreateTime,news);
             break;
 

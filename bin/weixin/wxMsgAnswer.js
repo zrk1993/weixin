@@ -63,13 +63,7 @@ var wxMsgAnswer={
             "</xml>";
     },
     news:function (ToUserName,FromUserName,CreateTime,items) {
-        var item="<item>"+
-            "<Title><![CDATA[title1]]></Title>"+
-            "<Description><![CDATA[description1]]></Description>"+
-            "<PicUrl><![CDATA[picurl]]></PicUrl>"+
-            "<Url><![CDATA[url]]></Url>"+
-            "</item>",
-            articles;
+        var articles="";
         for(var i=0;i<items.length;i++){
             articles+="<item>"+
                         "<Title><![CDATA["+items[i].Title+"]]></Title>"+
@@ -78,6 +72,7 @@ var wxMsgAnswer={
                         "<Url><![CDATA["+items[i].Url+"]]></Url>"+
                       "</item>";
         }
+        console.log("i"+i);
         return "<xml>"+
             "<ToUserName><![CDATA["+ToUserName+"]]></ToUserName>"+
             "<FromUserName><![CDATA["+FromUserName+"]]></FromUserName>"+

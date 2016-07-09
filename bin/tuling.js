@@ -64,10 +64,10 @@ function pase(msg,data) {
             var news=[];
             for (var i;i<data.list.length;i++){
                 var item={};
-                item["Description"]=data.list[i].article
-                item["Title"]=data.list[i].source
-                item["PicUrl"]=data.list[i].icon
-                item["Url"]=data.list[i].detailurl
+                item["Description"]=data.list[i].article;
+                item["Title"]=data.list[i].source;
+                item["PicUrl"]=data.list[i].icon;
+                item["Url"]=data.list[i].detailurl;
                 news.push(item);
             }            
             result=wxMsgAnswer.news(msg.FromUserName,msg.ToUserName,msg.CreateTime,news);

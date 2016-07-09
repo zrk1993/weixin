@@ -64,13 +64,12 @@ function pase(msg,data) {
             var news=[];
             for (var i=0;i<data.list.length&&i<4;i++){
                 var item={};
-                item["Title"]=data.list[i].article;
+                item["Title"]=data.list[i].article.length>1?data.list[i].article:data.list[i].source;
                 item["Description"]=data.list[i].source;
-                item["PicUrl"]=data.list[i].icon.length>1?data.list[i].icon:"https://unsplash.it/360/200";
+                item["PicUrl"]=data.list[i].icon.length>1?data.list[i].icon:"https://unsplash.it/360/200?random";
                 item["Url"]=data.list[i].detailurl;
                 news.push(item);
             }
-            console.log("i"+i);
             result=wxMsgAnswer.news(msg.FromUserName,msg.ToUserName,msg.CreateTime,news);
             break;
 

@@ -15,7 +15,7 @@ var tuling={
     sya:function (msg,answer) {
         var post_data = {
             key:APIKey,
-            info:info,
+            info:msg.text,
             loc:"厦门市",
             userid:"123456"
         };

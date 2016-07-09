@@ -2,6 +2,7 @@
  * Created by RK on 2016/7/7.
  */
 var wxMsgAnswer = require('./wxMsgAnswer');
+var tuling=require('../tuling')
 //wx消息处理，分析消息，再决定如何回复消息。
 //res 嵌套的有点深啊，等我厉害了再来解决
 function wxMsgHandler(msg,res) {

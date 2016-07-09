@@ -36,8 +36,8 @@
       <file leaf-file-name="wxMsgHandler.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+            <state relative-caret-position="104">
+              <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
       <file leaf-file-name="wxMsgAnswer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgAnswer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
+            <state relative-caret-position="1950">
               <caret line="77" column="29" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="29" />
               <folding>
                 <element signature="e#0#37#0" expanded="false" />
@@ -277,15 +277,15 @@
       <workItem from="1467978717950" duration="6424000" />
       <workItem from="1468025842374" duration="227000" />
       <workItem from="1468027507386" duration="1058000" />
-      <workItem from="1468058733087" duration="9377000" />
+      <workItem from="1468058733087" duration="9560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50639000" />
+    <option name="totallyTimeSpent" value="50822000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20204978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -619,16 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgAnswer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#37#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/tuling.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -639,10 +629,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgAnswer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1950">
+          <caret line="77" column="29" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#37#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/weixin/wxMsgHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+        <state relative-caret-position="104">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
           <folding />
         </state>
       </provider>

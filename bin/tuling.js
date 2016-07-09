@@ -17,7 +17,7 @@ var tuling={
             key:APIKey,
             info:msg.text,
             loc:"厦门市",
-            userid:"123456"
+            userid:msg.FromUserName
         };
 
         var content = qs.stringify(post_data);
@@ -35,6 +35,7 @@ var tuling={
         var req = http.request(options, function (res) {
             res.setEncoding('utf8');
             res.on('data', function (data) {
+                console.log("tuling"+data);
                 answer(pase(msg,data));
             });
         });
@@ -76,6 +77,7 @@ function pase(msg,data) {
             result=wxMsgAnswer.text(msg.ToUserName,msg.FromUserName,msg.CreateTime,data.text);
             ;
     }
+    return result;
 }
 module.exports = tuling;
 

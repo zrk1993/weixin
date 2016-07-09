@@ -9,7 +9,8 @@ function wxMsgHandler(msg,res) {
     switch(msg.MsgType)
     {
         case "text":
-            tuling.sya(msg,function (answer) {                
+            tuling.sya(msg,function (answer) {   
+                console.log("answer"+answer);
                  res.send(answer);
             });
             break;

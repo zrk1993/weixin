@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>向服务器上传文件</title>
+    <script type="text/javascript">
+        document.cookie="firstName=思思"+new Date().getTime();
+        document.cookie="userName=博士";
+        function submitCookie(){
+            var xhr=new XMLHttpRequest();
+            xhr.open("post","/test",true);
+            xhr.onload= function (e) {
+                if(this.status==200)
+                    document.getElementById("res").innerHTML=this.response;
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+<h1>cookieParser中间件的使用</h1>
+<input type="button" value="提交cookie" onclick="submitCookie();" />
+<div id="res"></div>
+</body>
+</html>

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var weixin = require('./routes/weixin');
 var test = require('./routes/test');
+var admin = require('./routes/admin');
 
 
 var app = express();
@@ -23,8 +24,7 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
+app.use('/admin', admin);
 app.use('/weixin', weixin);
 app.use('/t', test);
 

@@ -52,8 +52,8 @@
 <script src="js/jquery1.11.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
-    $("#header").load("head.html");//头部
-    $("#menu").load("menu.html",function () {
+    $("#header").load("/admin/head.html");//头部
+    $("#menu").load("/admin/menu.html",function () {
         var a = $("dd a");
         a.each(function () {
             if("/admin/"+$(this).attr("href")== window.location.pathname){
@@ -61,7 +61,7 @@
             }
         });
     });//菜单
-    $("#footer").load("foot.html");//底部
+    $("#footer").load("/admin/foot.html");//底部
 </script>
 </body>
 </html>

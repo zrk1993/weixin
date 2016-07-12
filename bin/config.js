@@ -1,6 +1,5 @@
 var config={
-    "port":80，
-    
+    "port":80  
 
 }
 module.exports = config;

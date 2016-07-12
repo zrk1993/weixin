@@ -2,14 +2,14 @@
  * Created by RK on 2016/7/7.
  */
 var wxMsgAnswer = require('./wxMsgAnswer');
-var tuling=require('../tuling')
+var tuling=require('./tuling');
 //wx消息处理，分析消息，再决定如何回复消息。
 //res 嵌套的有点深啊，等我厉害了再来解决
 function wxMsgHandler(msg,res) {
     switch(msg.MsgType)
     {
         case "text":
-            tuling.sya(msg,function (answer) {   
+            tuling.sya(msg,function (answer) {
                 console.log("answer"+answer);
                  res.send(answer);
             });

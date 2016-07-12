@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var URL = require('url');
-var tuling=require('../bin/tuling');
+var tuling=require('../bin/weixin/tuling');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var co;

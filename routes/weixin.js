@@ -14,7 +14,11 @@ router.use('/',function (req,res,next) {
         req.arg = arg;
         next();
     }else {
-        res.end();
+      res.status(err.status || 500);
+      res.render('error', {
+        message: "you are not wechat",
+        error: err
+      });
     }
 });
 

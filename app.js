@@ -2,8 +2,10 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+
+
+var session = require('express-session'); //如果要使用session，需要单独包含这个模块
+var cookieParser = require('cookie-parser'); //如果要使用cookie，需要显式包含这个模块
 
 var weixin = require('./routes/weixin');
 var test = require('./routes/test');
@@ -11,6 +13,7 @@ var admin = require('./routes/admin');
 
 
 var app = express();
+app.use(express.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

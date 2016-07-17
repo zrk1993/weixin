@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+    <title>微信管理系统</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/selfmenu.css">
+</head>
+<body>
+<!-- Static navbar -->
+<header id="header">
+    <% include head.html %>
+</header>
+<div id="body" class="container">
+    <div id="menu" class="col_side">
+        <% include menu.html %>
+    </div>
+
+    <div class="col_main" ng-app>
+        <div class="main_hd">
+            <h2>自定义菜单</h2>
+            <div class="title_tab" id="topTab">
+                <ul id="myTab" class="nav nav-tabs">
+                </ul>
+            </div>
+        </div>
+        <div class="main_bd tab-content" ng-controller="menuController">
+            <div class="tab-pane fade in active" id="home">
+                <div class="extra_info">
+                    <p class="bg-info">请确认菜单编辑完成后点击“保存并发布”同步到手机。</p>
+                </div>
+                <div class="menu_preview">
+                    <img src="img/weixihead.jpg">
+                    <ul class="menu_preview_ul">
+                        <li class="menu_preview_ul_li " ng-repeat="button in menu.button"
+                            ng-class="{true: 'editmenu'}[edit.a==$index&&edit.b==-1]">
+                            <ul class="menu_preview_ul_sub">
+                                <li ng-repeat="sub_button in button.sub_button"
+                                    ng-class="{true: 'editmenu'}[edit.a==$parent.$index&&edit.b==$index]">
+                                    <a ng-click="editmenu($parent.$index,$index)" href="javascript:void(0);"
+                                       class="pre_menu_link">
+                                        <span class="js_l1Title">{{sub_button.name}}</span>
+                                    </a>
+                                </li>
+                                <li ng-if="button.sub_button.length<5||!button.sub_button">
+                                    <a ng-click="addsubmenu($index)" href="javascript:void(0);" class="pre_menu_link">
+                                        <span class="js_l1Title">增加子菜单</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a ng-click="editmenu($index,-1)" href="javascript:void(0);" class="pre_menu_link">
+                                <span class="js_l1Title">{{button.name}}</span>
+                            </a>
+                        </li>
+                        <li class="menu_preview_ul_li" ng-if="menu.button.length<3">
+                            <a ng-click="addmenu()" href="javascript:void(0);" class="pre_menu_link">
+                                <span class="js_l1Title">增加菜单</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu_form">
+                    <h4>菜单名称<a ng-click="delmenu()" href="javascript:void(0);" class="pull-right">删除菜单</a></h4>
+                    <div>
+                        <span>菜单名称</span>
+                        <input ng-if="edit.b!=-1" ng-model="menu.button[edit.a].sub_button[edit.b].name">
+                        <input ng-if="edit.b==-1" ng-model="menu.button[edit.a].name">
+                    </div>
+                    <div>
+                        <span>菜单内容</span>
+                        <input type="radio" ng-model="type" value="click"/><label>点击推事件</label>
+                        <input type="radio" ng-model="type" value="view"/><label>跳转URL</label>
+                        <input type="radio" ng-model="type" value="scancode_push"/><label>扫码推事件</label>
+                        <input type="radio" ng-model="type" value="scancode_waitmsg"/><label>扫码推事件且弹出“消息接收中”提示框</label>
+                        <input type="radio" ng-model="type" value="pic_sysphoto"/><label>弹出系统拍照发图</label>
+                        <input type="radio" ng-model="type" value="pic_photo_or_album"/><label>弹出拍照或者相册发图</label>
+                        <input type="radio" ng-model="type" value="pic_weixin"/><label>弹出微信相册发图器</label>
+                        <input type="radio" ng-model="type" value="location_select"/><label>弹出地理位置选择器</label>
+                        <input type="radio" ng-model="type" value="media_id"/><label>下发消息（除文本消息）</label>
+                        <input type="radio" ng-model="type" value="view_limited"/><label>跳转图文消息URL</label>
+                    </div>
+                    <div ng-switch on="type">
+                        <div ng-switch-when="click">
+                            <div>
+                                <p>click：点击推事件
+                                    用户点击click类型按钮后，微信服务器会通过消息接口推送消息类型为event
+                                    的结构给开发者（参考消息接口指南），并且带上按钮中开发者填写的key值，开发者可以通过自定义的key值与用户进行交互；</p>
+                            </div>
+                            <div>
+                                <label>事件key值</label><input ng-model="val" ng-change="keyChange(val)"/>{{key}}
+                            </div>
+                        </div>
+                        <div ng-switch-when="view">
+                            <div>
+                                <p>view：跳转URL
+                                    用户点击view类型按钮后，微信客户端将会打开开发者在按钮中填写的网页URL，可与网页授权获取用户基本信息接口结合，获得用户基本信息。</div>
+                            <div>
+                                <label>跳转url</label><input ng-model="val" ng-change="urlChange(val)"/>
+                            </div>
+                        </div>
+                        <div ng-switch-when="scancode_push">{{ type }}</div>
+                        <div ng-switch-when="scancode_waitmsg">{{ type }}</div>
+                        <div ng-switch-when="pic_sysphoto">{{ type }}</div>
+                        <div ng-switch-when="pic_photo_or_album">{{ type }}</div>
+                        <div ng-switch-when="pic_weixin">{{ type }}</div>
+                        <div ng-switch-when="location_select">{{ type }}</div>
+                        <div ng-switch-when="media_id">
+                            <div>
+                                <p>
+                                    用户点击media_id类型按钮后，微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
+                                <div>
+                                    <label>media_id</label><input ng-model="val" ng-change="media_idChange(val)"/>
+                                </div>
+                            </div>
+                            <div ng-switch-when="view_limited">
+                                <div>
+                                    <p>
+                                        用户点击view_limited类型按钮后，微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL，永久素材类型只支持图文消息。请注意：永久素材id必须是在“素材管理/新增永久素材”接口上传后获得的合法id。
+                                    <div>
+                                        <label>media_id</label><input ng-model="val" ng-change="media_idChange(val)"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 2em">
+                <button ng-click="save()" class="btn btn-success">保存并发布</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <% include foot.html %>
+</footer>
+<script src="js/jquery1.11.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../js/angular.min.js"></script>
+<script>
+    $("dd a").each(function () {
+        if ("/admin/" + $(this).attr("href") == window.location.pathname) {
+            $(this).parent().attr("class", "menu_item selected");
+        }
+    });
+    function menuController($scope,$http) {
+        $scope.menu = JSON.parse('<%-selfmenu%>');
+        $scope.edit = {a: -1, b: -1};
+        $scope.addmenu = function () {
+            $scope.menu.button.push({
+                "type": "click",
+                "name": "菜单名称"
+            });
+            $scope.$apply();
+        };
+        $scope.addsubmenu = function (index) {
+            if ($scope.menu.button[index].sub_button) {
+                $scope.menu.button[index].sub_button.push({
+                    "type": "click",
+                    "name": "子菜单"
+                });
+            } else {
+                $scope.menu.button[index] = {
+                    "name": $scope.menu.button[index].name,
+                    "sub_button": [
+                        {
+                            "type": "click",
+                            "name": "子菜单"
+                        }]
+                };
+            }
+            $scope.$apply();
+        }
+        $scope.editmenu = function (a, b) {
+            $scope.edit.a = a;
+            $scope.edit.b = b;
+            $scope.$apply();
+        };
+        $scope.delmenu = function () {
+            if ($scope.edit.b < 0)$scope.$apply($scope.menu.button.splice($scope.edit.a, 1));
+            else {
+                $scope.$apply($scope.menu.button[$scope.edit.a].sub_button.splice($scope.edit.b, 1));
+            }
+        };
+        $scope.$watch('type', function (newValue, oldValue) {
+            if ($scope.edit.b == -1) {
+                $scope.menu.button[$scope.edit.a].type = newValue;
+            } else {
+                $scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].type = newValue;
+            }
+            $scope.$apply();
+        });
+        $scope.urlChange = function (val) {
+            var temp={};
+            if ($scope.edit.b == -1) {
+                temp.name=$scope.menu.button[$scope.edit.a].name;
+                temp.type=$scope.menu.button[$scope.edit.a].type;
+                temp.url = val;
+                $scope.menu.button[$scope.edit.a]=temp;
+            } else {
+                temp.name=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].name;
+                temp.type=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].type;
+                temp.url = val;
+                $scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b]=temp;
+            }
+            $scope.$apply();
+        };
+        $scope.keyChange = function (val) {
+            var temp={};
+            if ($scope.edit.b == -1) {
+                temp.name=$scope.menu.button[$scope.edit.a].name;
+                temp.type=$scope.menu.button[$scope.edit.a].type;
+                temp.key = val;
+                $scope.menu.button[$scope.edit.a]=temp;
+            } else {
+                temp.name=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].name;
+                temp.type=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].type;
+                temp.key = val;
+                $scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b]=temp;
+            }
+            $scope.$apply();
+        };
+        $scope.save=function () {
+            $http({
+                url:'/admin/selfmenu',
+                method:'POST',
+                data:$scope.menu
+            }).success(function(data,header,config,status){
+
+            }).error(function(data,header,config,status){
+                alert("error！！！请联系程序小哥");
+            });
+        }
+    }
+</script>
+</body>
+</html>

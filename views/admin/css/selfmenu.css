@@ -1,0 +1,64 @@
+.extra_info p{
+    padding: 0.5em;
+}
+.menu_preview{
+    border: 1px solid #ddd;
+    width: 320px;
+    height: 460px;
+    display: inline-block;
+    position: relative;
+
+}
+.menu_preview img{
+    width: 320px;
+}
+.menu_form{
+    border: 1px solid #ddd;
+    max-width: 560px;
+    margin-left: 15px;
+    height: 460px;
+    float: right;
+    padding: 1em;
+}
+.menu_preview_ul{
+    padding: 0;
+    margin: 0;
+    width: auto;
+    list-style: none;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url("../img/bg_mobile_foot.png"),repeat;
+    border: 1px solid #eee;
+    padding-left: 35px;
+}
+.menu_preview_ul_li{
+    display: block;float: left;
+    height: 40px;
+    width: 33.3%;
+    text-align: center;
+    padding-top: 10px;
+    border-right: 1px solid #eee ;
+}
+.pre_menu_link{
+    padding: 0.2em;
+    color: #666;
+    text-decoration: none;
+}
+.menu_preview_ul_sub{
+    position: absolute;
+    padding-left: 1px;
+    width: auto;
+    bottom: 40px;
+}
+.menu_preview_ul_sub li{
+    list-style-type:none;
+    margin-bottom: 0.6em;
+    padding: 0.3em;
+    border: 1px solid #eee;
+}
+.editmenu{
+    background-color: #eee;
+}

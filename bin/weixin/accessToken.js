@@ -1,7 +1,7 @@
 /**
  * Created by RK on 2016/7/20.
  */
-var config=required('../config.js');
+var config=require('../config.js');
 var http = require('http');
 
 var APPID=config.APPID;

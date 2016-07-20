@@ -15,6 +15,6 @@
     "serve-favicon": "~2.3.0",
     "xml2js": "latest",
     "express-session":"latest",
-    "mysql":"latest"
+    "lowdb":"latest"
   }
 }

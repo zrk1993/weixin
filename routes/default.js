@@ -2,14 +2,21 @@ var express = require('express');
 var router = express.Router();
 var URL = require('url');
 var tuling=require('../bin/weixin/tuling');
+const low = require('lowdb')
+const db = low('db.json')
+
+// Init
+db.defaults({ post111: [] })
+    .value()
+
+// Define posts
+const posts = db.get('posts')
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  var co;
-  for(var key in  req.cookies){
-    co+="cookie名:"+key;
-    co+="cookie值:"+req.cookies[key]+"<br />";
-  }
-  res.render('test', { title: 'Express' ,cookie:co});
+router.get('/low', function(req, res, next) {
+  const post = posts
+      .find({ id: req.params.id })
+      .value()
+  res.send(post)
 });
 router.post("/", function (req,res) {
   for(var key in  req.cookies){

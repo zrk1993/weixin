@@ -4,6 +4,8 @@ var URL = require('url');
 var config = require('../bin/config');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+
+var selmenu=require("../bin/weixin/selfmenu");
 //登录控制
 router.use(function (req, res, next) {
     if (req.session.admin||true) {
@@ -58,7 +60,7 @@ router.get('/selfmenu',function (req, res) {
 });
 //自定义菜单
 router.post('/selfmenu',function (req, res) {
-    
-    res.send(req.body);
+    selmenu.setSelfMenu(req.body);
+    res.send(selmenu.setSelfMenu(req.body)+req.body);
 });
 module.exports = router;

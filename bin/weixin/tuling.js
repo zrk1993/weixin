@@ -37,7 +37,7 @@ var tuling={
             res.on('data', function (data) {
                 console.log("tuling"+data);
                 var a=JSON.parse(data);
-                a.text=a.text+"-->Robot";
+                a.text=a.text;
                 answer(pase(msg,a));
             });
         });

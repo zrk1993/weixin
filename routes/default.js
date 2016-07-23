@@ -4,6 +4,9 @@ var URL = require('url');
 var tuling=require('../bin/weixin/tuling');
 const low = require('lowdb')
 const db = low('db.json')
+var async = require('async');
+
+var access=require('../bin/weixin/accessToken');
 
 // Init
 db.defaults({ post111: [] })
@@ -18,12 +21,22 @@ router.get('/low', function(req, res, next) {
       .value()
   res.send(post)
 });
-router.post("/", function (req,res) {
-  for(var key in  req.cookies){
-    res.write("cookie名:"+key);
-    res.write(",cookie值:"+req.cookies[key]+"<br />");
-  }
-  res.end();
+router.get("/q", function (req,res) {
+  async.waterfall([
+    function(callback){
+      callback('1', '2');
+    },
+    function(arg1, arg2, callback){
+      console.log(arg1+"vvv"+arg2)
+      callback(null, '3');
+    },
+    function(arg1, callback){
+      console.log(arg1)
+      callback(null, '4');
+    }
+  ], function (err, result) {
+    if(!err)console.log(result);
+  });
 });
 
 router.get("/tuling", function (req,res) {

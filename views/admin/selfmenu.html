@@ -151,7 +151,7 @@
         }
     });
     function menuController($scope,$http) {
-        $scope.menu = JSON.parse('<%-selfmenu%>');
+        $scope.menu = JSON.parse('<%-selfmenu%>').menu;
         $scope.edit = {a: -1, b: -1};
         $scope.addmenu = function () {
             $scope.menu.button.push({
@@ -200,13 +200,13 @@
         $scope.urlChange = function (val) {
             var temp={};
             if ($scope.edit.b == -1) {
-                temp.name=$scope.menu.button[$scope.edit.a].name;
                 temp.type=$scope.menu.button[$scope.edit.a].type;
+                temp.name=$scope.menu.button[$scope.edit.a].name;
                 temp.url = val;
                 $scope.menu.button[$scope.edit.a]=temp;
             } else {
-                temp.name=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].name;
                 temp.type=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].type;
+                temp.name=$scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b].name;
                 temp.url = val;
                 $scope.menu.button[$scope.edit.a].sub_button[$scope.edit.b]=temp;
             }
@@ -228,12 +228,13 @@
             $scope.$apply();
         };
         $scope.save=function () {
+            if(!confirm(JSON.stringify($scope.menu)))return;
             $http({
                 url:'/admin/selfmenu',
                 method:'POST',
                 data:$scope.menu
             }).success(function(data,header,config,status){
-                alert(data)
+                alert(JSON.stringify(data))
             }).error(function(data,header,config,status){
                 alert("error！！！请联系程序小哥");
             });

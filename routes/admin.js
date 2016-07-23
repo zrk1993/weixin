@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var async = require('async');
 var URL = require('url');
 var config = require('../bin/config');
 var session = require('express-session');
@@ -28,39 +29,20 @@ router.get('/',function (req, res) {
     res.send("sessionID"+req.sessionID+"secret"+req.secret+"views"+sess.views);
 });
 //自定义菜单
-router.get('/selfmenu',function (req, res) {
-    var menu= {
-        "button":[
-            {
-                "type":"click",
-                "name":"今日歌曲",
-                "key":"V1001_TODAY_MUSIC"
-            },
-            {
-                "name":"菜单",
-                "sub_button":[
-                    {
-                        "type":"view",
-                        "name":"搜索",
-                        "url":"http://www.soso.com/"
-                    },
-                    {
-                        "type":"view",
-                        "name":"视频",
-                        "url":"http://v.qq.com/"
-                    },
-                    {
-                        "type":"click",
-                        "name":"赞一下我们",
-                        "key":"V1001_GOOD"
-                    }]
-            }]
-    }
-    res.render('admin/selfmenu.html',{selfmenu:JSON.stringify(menu)});
+router.get('/selfmenu',function (req, res) {   
+    selmenu.getSelfMenu(function (err, result) {
+        res.render('admin/selfmenu.html',{selfmenu:result});
+    })
 });
 //自定义菜单
 router.post('/selfmenu',function (req, res) {
-    selmenu.setSelfMenu(req.body);
-    res.send(selmenu.setSelfMenu(req.body)+req.body);
+    selmenu.setSelfMenu(JSON.stringify(req.body),function (err,result) {
+        if(err){
+            res.send("erro");
+        }
+        else {
+                res.send(result);
+        }
+    });
 });
 module.exports = router;

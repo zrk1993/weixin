@@ -2,7 +2,7 @@
  * Created by RK on 2016/7/7.
  */
 //封装成微信要求的消息格式
-var wxMsgAnswer={
+var wxMsg={
     text:function (ToUserName,FromUserName,CreateTime,Content) {
         return "<xml>"+
                     "<ToUserName><![CDATA["+ToUserName+"]]></ToUserName>"+
@@ -84,4 +84,4 @@ var wxMsgAnswer={
             "</xml>";
     }
 };
-module.exports = wxMsgAnswer;
+module.exports = wxMsg;

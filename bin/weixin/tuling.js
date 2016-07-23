@@ -4,7 +4,7 @@
 //图灵机器人 网址http://www.tuling123.com/ 绑定qq 1051455824 shouji 15159041052
 var http = require('http');
 var qs = require('querystring');
-var wxMsgAnswer = require('./wxMsgAnswer');
+var wxMsg = require('./wxMsg');
 
 var api_hostname="www.tuling123.com",
     api_path="/openapi/api",
@@ -57,10 +57,10 @@ function pase(msg,data) {
     switch(data.code)
     {
         case 100000://文本
-            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
+            result=wxMsg.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
             break;
         case 200000://链接
-            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text+"。"+data.url);
+            result=wxMsg.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text+"。"+data.url);
             break;
         case 302000://新闻
             var news=[];
@@ -72,11 +72,11 @@ function pase(msg,data) {
                 item["Url"]=data.list[i].detailurl;
                 news.push(item);
             }
-            result=wxMsgAnswer.news(msg.FromUserName,msg.ToUserName,msg.CreateTime,news);
+            result=wxMsg.news(msg.FromUserName,msg.ToUserName,msg.CreateTime,news);
             break;
 
         default:
-            result=wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
+            result=wxMsg.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,data.text);
             ;
     }
     return result;

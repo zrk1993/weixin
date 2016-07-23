@@ -1,8 +1,8 @@
 /**
  * Created by RK on 2016/7/7.
- * 微信消息回复
+ * 微信消息处理
  */
-var wxMsgAnswer = require('./wxMsgAnswer');
+var wxMsg = require('./wxMsg');
 var tuling=require('./tuling');
 var wxEventHand=require('./wxEventHand');
 
@@ -38,10 +38,11 @@ function wxMsgHandler(msg,res) {
         case "event":
             wxEventHand(msg,function (answer) {
                 if(answer)res.send(answer);
+                else {res.send("");}
             });
             break;
         default:
-            res.send(wxMsgAnswer.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,"花开花落"));
+            res.send(wxMsg.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,"花开花落"));
             
     }
 }

@@ -40,9 +40,10 @@ router.post('/', function(req, res) {
             if (err){
                 console.log("xml to json err");
             }
-            else {data=result;}
+            else {data=result;
+                wxMsgHandler(data.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
+            }
         });
-        wxMsgHandler(data.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
     })
 });
 //通过对签名的效验，来判断此条消息的真实性,是否来自微信。

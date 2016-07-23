@@ -43,7 +43,9 @@ function wxMsgHandler(msg,res) {
             break;
         default:
             res.send(wxMsg.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,"花开花落"));
+            break;
             
     }
+    console.log("2");
 }
 wxEventHand = wxMsgHandler;

@@ -38,12 +38,10 @@ router.post('/', function(req, res) {
         var data= Buffer.concat(arr).toString();
         parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
             if (err){
-                console.log("xml to json err");
+                console.log("weixin.js xml to json err");
             }
-            else {data=result;
-                console.log("0");
-                wxMsgHandler(data.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
-                console.log("1");
+            else {
+                wxMsgHandler(result.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
             }
         });
     })

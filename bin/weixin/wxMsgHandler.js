@@ -46,6 +46,5 @@ function wxMsgHandler(msg,res) {
             break;
             
     }
-    console.log("2");
 }
-wxEventHand = wxMsgHandler;
+module.exports = wxMsgHandler;

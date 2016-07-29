@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var URL = require('url');
-var tuling=require('../bin/weixin/tuling');
-const low = require('lowdb')
-const db = low('db.json')
+var tuling=require('../bin/core/tuling');
+const low = require('lowdb');
+const db = low('db.json');
 var async = require('async');
 
-var access=require('../bin/weixin/accessToken');
+var access=require('../bin/core/accessToken');
 
 // Init
 db.defaults({ post111: [] })

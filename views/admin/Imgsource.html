@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+    <title>微信管理系统</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/imgsource.css">
+</head>
+<body>
+<!-- Static navbar -->
+<header id="header">
+    <% include head.html %>
+</header>
+<div id="body" class="container">
+    <div id="menu" class="col_side">
+        <% include menu.html %>
+    </div>
+    <div class="col_main">
+        <div class="main_hd">
+            <h2>素材管理</h2>
+            <div class="title_tab" id="topTab">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#image" data-toggle="tab">图片</a></li>
+                    <li><a href="#article" data-toggle="tab">图文</a></li>
+                    <li><a href="#voice" data-toggle="tab">语音</a></li>
+                    <li><a href="#movie" data-toggle="tab">视频</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_bd tab-content">
+            <div class="tab-pane fade in active container" id="image">
+                <div class="extra_info">
+
+                </div>
+                <div class="row">
+                    <div class="inner_main col-xs-9">
+                        <div>
+                            <div class="pull-left"><span>未分组</span><a href="#">重命名</a><a href="#">删除分组</a></div>
+                            <div class="pull-right">
+                                <form action="<%-imgupload%>" method="post" enctype="multipart/form-data">
+                                    <input name="media" type="file" multiple="multiple" accept="image/*" data-type="file">
+                                    <input type="submit">
+                                </form>
+                            </div>
+                            <div class="pull-right">大小不超过5M，已开启图片水印</div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div>
+                            <div class="pull-left">
+                                <label class="frm_checkbox_label" for="js_all">
+                                    <input id="js_all" type="checkbox" data-label=" 全选">
+                                    <i class="icon_checkbox"></i><span class="lbl_content">&nbsp;全选</span></label>
+                            </div>
+                            <div class="pull-left">
+                                <a href="javascript:;">移动分组</a>
+                                <a href="javascript:;">删除</a>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-xs-3">qq</div>
+                            <div class="col-xs-3">qq</div>
+                            <div class="col-xs-3">qq</div>
+                            <div class="col-xs-3">qq</div>
+                            <div class="col-xs-3">qq</div>
+                        </div>
+                    </div>
+                    <div class="inner_side col-xs-3">
+                        <ul>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="voice">
+                <div class="extra_info">
+                    voice
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="article">
+                <div class="extra_info">
+                    image
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="movie">
+                <div class="extra_info">
+                    movie
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer id="footer">
+    <% include foot.html %>
+</footer>
+<script src="js/jquery1.11.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+    var a = $("dd a");
+    a.each(function () {
+        if ("/admin/" + $(this).attr("href") == window.location.pathname) {
+            $(this).parent().attr("class", "menu_item selected");
+        }
+    });
+</script>
+</body>
+</html>

@@ -29,7 +29,7 @@ app.use(session({secret: 'mysession',cookie: {maxAge: 60 * 1000 * 1}}));//
 
 app.use('/', defaul);
 app.use('/admin', admin);
-app.use('/weixin', weixin);
+app.use('/core', weixin);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

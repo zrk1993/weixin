@@ -44,7 +44,6 @@ function wxMsgHandler(msg,res) {
         default:
             res.send(wxMsg.text(msg.FromUserName,msg.ToUserName,msg.CreateTime,"花开花落"));
             break;
-            
     }
 }
 module.exports = wxMsgHandler;

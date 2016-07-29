@@ -20,7 +20,7 @@ body {
 }
 .col_side {
     width: 20.5%;
-    min-width:180px;
+    min-width:160px;
     display: table-cell;
     border-right:1px solid #e9e9e9;
     padding-top:22px;
@@ -97,7 +97,7 @@ dd:hover {
     line-height: 40px;
 }
 .main_bd{
-    padding: 1em;
+    padding:0 30px;
 }
 .main_hd h2 {
     font-size: 20px;
@@ -110,6 +110,7 @@ dd:hover {
 #myTab{
     border: 0px;
     border-bottom: 1px solid #ddd;
+    padding: 0 30px;
 }
 #myTab li a{
     border: 0px;

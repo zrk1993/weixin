@@ -1,18 +1,25 @@
 <component name="ProjectDictionaryState">
   <dictionary name="RK">
     <words>
+      <w>accesstoken</w>
       <w>addmenu</w>
       <w>appid</w>
       <w>appsecret</w>
       <w>crypto</w>
       <w>defaul</w>
       <w>echostr</w>
+      <w>editmenu</w>
       <w>errcode</w>
+      <w>getsource</w>
       <w>multer</w>
+      <w>qglrq</w>
       <w>selfmenu</w>
       <w>sess</w>
       <w>tuling</w>
       <w>unsubscribe</w>
+      <w>uploadimage</w>
+      <w>uploadsource</w>
+      <w>utcg</w>
       <w>weixin</w>
       <w>zhengrenkun</w>
       <w>zxcvbnm</w>

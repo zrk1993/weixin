@@ -3,7 +3,7 @@ var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
 var parseString = require('xml2js').parseString;
-var wxMsgHandler = require('../bin/weixin/wxMsgHandler');
+var wxMsgHandler = require('../bin/core/wxMsgHandler');
 
 var token = "zhengrenkun"; //微信验证token
 

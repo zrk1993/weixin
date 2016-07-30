@@ -15,8 +15,9 @@ function init(server) {
     io = socket_io(server, null);
     io.on('connection', function (socket) {
         socket.emit('connect', "接入成功");
-
+        console.log("接入成功");
         socket.on('add user', function (username) {
+            console.log("username"+username);
             socket.emit('login', {
                 numUsers: "name:" + username
             })

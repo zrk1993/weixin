@@ -66,11 +66,10 @@
       <file leaf-file-name="ChatService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/chat/ChatService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+            <state relative-caret-position="111">
+              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
               <folding>
                 <element signature="e#0#38#0" expanded="false" />
-                <element signature="e#440#500#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -461,12 +460,12 @@
       <workItem from="1469802101251" duration="246000" />
       <workItem from="1469842925467" duration="7354000" />
       <workItem from="1469852529320" duration="1886000" />
-      <workItem from="1469882875639" duration="7931000" />
+      <workItem from="1469882875639" duration="9391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209897000" />
+    <option name="totallyTimeSpent" value="211357000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -830,11 +829,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/chat/ChatService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+        <state relative-caret-position="111">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding>
             <element signature="e#0#38#0" expanded="false" />
-            <element signature="e#440#500#0" expanded="false" />
           </folding>
         </state>
       </provider>

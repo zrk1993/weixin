@@ -9,12 +9,15 @@ var debug = require('debug')('wx:server');
 var http = require('http');
 var init = require('./init.js');
 var config = require('./config.js');
+var ChatService=require('./chat/ChatService');
 
 init();//数据库初始化 各项参数初始化
 
 var port = config.port;
 app.set('port', port);
 var server = http.createServer(app);
+
+//ChatService(server);
 
 server.listen(port);
 server.on('error', onError);

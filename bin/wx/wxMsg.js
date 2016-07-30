@@ -1,7 +1,7 @@
 /**
  * Created by RK on 2016/7/7.
  */
-//封装成微信要求的消息格式
+//封装成微信要求的返回消息格式
 var wxMsg={
     text:function (ToUserName,FromUserName,CreateTime,Content) {
         return "<xml>"+

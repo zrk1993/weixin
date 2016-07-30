@@ -17,6 +17,7 @@
     "express-session":"latest",
     "lowdb":"latest",
     "async":"latest",
-    "request":"latest"
+    "request":"latest",
+    "socket.io":"latest"
   }
 }

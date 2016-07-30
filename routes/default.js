@@ -47,4 +47,3 @@ router.get("/tuling", function (req,res) {
   });
 });
 
-module.exports = router;

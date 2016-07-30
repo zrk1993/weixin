@@ -9,9 +9,9 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
     <title>微信管理系统</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="css/selfmenu.css">
+    <link href="wx/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="wx/css/main.css">
+    <link rel="stylesheet" href="wx/css/selfmenu.css">
 </head>
 <body>
 <!-- Static navbar -->
@@ -37,7 +37,7 @@
                     <p class="bg-info">请确认菜单编辑完成后点击“保存并发布”同步到手机。</p>
                 </div>
                 <div class="menu_preview">
-                    <img src="img/weixihead.jpg">
+                    <img src="wx/img/weixihead.jpg">
                     <ul class="menu_preview_ul">
                         <li class="menu_preview_ul_li " ng-repeat="button in menu.button"
                             ng-class="{true: 'editmenu'}[edit.a==$index&&edit.b==-1]">
@@ -141,12 +141,12 @@
 <footer id="footer">
     <% include foot.html %>
 </footer>
-<script src="js/jquery1.11.min.js"></script>
+<script src="wx/js/jquery1.11.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="../js/angular.min.js"></script>
+<script src="wx/js/angular.min.js"></script>
 <script>
     $("dd a").each(function () {
-        if ("/admin/" + $(this).attr("href") == window.location.pathname) {
+        if ("/wx/" + $(this).attr("href") == window.location.pathname) {
             $(this).parent().attr("class", "menu_item selected");
         }
     });
@@ -230,7 +230,7 @@
         $scope.save=function () {
             if(!confirm(JSON.stringify($scope.menu)))return;
             $http({
-                url:'/admin/selfmenu',
+                url:'/wxSelfmenu',
                 method:'POST',
                 data:$scope.menu
             }).success(function(data,header,config,status){

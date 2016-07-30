@@ -3,7 +3,7 @@
  * 微信消息处理
  */
 var wxMsg = require('./wxMsg');
-var tuling=require('./tuling');
+var tuling=require('../tuling');
 var wxEventHand=require('./wxEventHand');
 
 //wx消息处理，分析消息，再决定如何回复消息。

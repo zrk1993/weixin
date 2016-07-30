@@ -3,7 +3,7 @@ var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
 var parseString = require('xml2js').parseString;
-var wxMsgHandler = require('../bin/core/wxMsgHandler');
+var wxMsgHandler = require('../bin/wx/wxMsgHandler');
 
 var token = "zhengrenkun"; //微信验证token
 
@@ -21,12 +21,10 @@ router.use('/',function (req,res,next) {
       });
     }
 });
-
 //微信的验证
 router.get('/', function(req, res) {
     res.send(req.arg["echostr"]);
 });
-
 //接收微信消息,并处理
 router.post('/', function(req, res) {
     var arg = req.arg;

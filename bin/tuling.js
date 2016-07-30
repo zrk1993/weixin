@@ -4,7 +4,7 @@
 //图灵机器人 网址http://www.tuling123.com/ 绑定qq 1051455824 shouji 15159041052
 var http = require('http');
 var qs = require('querystring');
-var wxMsg = require('./wxMsg');
+var wxMsg = require('./wx/wxMsg');
 
 var api_hostname="www.tuling123.com",
     api_path="/openapi/api",

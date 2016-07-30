@@ -7,8 +7,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var defaul = require('./routes/default');
-var admin = require('./routes/admin');
-var weixin = require('./routes/weixin');
+var weixin = require('./routes/weixin');//微信消息接收
+var wxSelfmenu = require('./routes/wxSelfmenu');//微信自定义菜单
+var wxSource = require('./routes/wxSource');//微信素材管理
 
 var app = express();
 
@@ -18,18 +19,16 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-
 app.use(express.static(path.join(__dirname, 'views')));
-
-app.use(session({secret: 'mysession',cookie: {maxAge: 60 * 1000 * 1}}));//
+app.use(session({secret: 'mysession',cookie: {maxAge: 60 * 1000}}));
 
 app.use('/', defaul);
-app.use('/admin', admin);
-app.use('/core', weixin);
+app.use('/weixin', weixin);
+app.use('/wxSource', wxSource);
+app.use('/wxSelfmenu', wxSelfmenu);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -37,9 +36,7 @@ app.use(function (req, res, next) {
     err.status = 404;
     next(err);
 });
-// error handlers
-// development error handler
-// will print stacktrace
+
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
@@ -49,8 +46,7 @@ if (app.get('env') === 'development') {
         });
     });
 }
-// production error handler
-// no stacktraces leaked to user
+
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

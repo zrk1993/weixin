@@ -18,15 +18,12 @@ function getFromWX(callback) {
     https.get(access_hostname+access_path, function (res) {
         res.on('data', function (data) {
             var a = JSON.parse(data);
-            console.log('access_token: ' + a.access_token);
             callback(a.access_token);
         });
     }).on('error', function (e) {
         console.error(e);
     });
-
 }
-
 exports.getAccessToken = function (callback) {
     if (global.accessToken == null) {
         getFromWX(callback);//保存在global上，以免重复获取

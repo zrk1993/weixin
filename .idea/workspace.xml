@@ -21,16 +21,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wxMsg.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/wx/wxMsg.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="wxKefu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/wx/wxKefu.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,8 +36,18 @@
       <file leaf-file-name="wxMsgHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/wx/wxMsgHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
+            <state relative-caret-position="111">
               <caret line="12" column="25" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tuling.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/tuling.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -66,8 +66,8 @@
       <file leaf-file-name="ChatService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/chat/ChatService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+            <state relative-caret-position="319">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding>
                 <element signature="e#0#38#0" expanded="false" />
                 <element signature="e#440#500#0" expanded="false" />
@@ -461,12 +461,12 @@
       <workItem from="1469802101251" duration="246000" />
       <workItem from="1469842925467" duration="7354000" />
       <workItem from="1469852529320" duration="1886000" />
-      <workItem from="1469882875639" duration="7796000" />
+      <workItem from="1469882875639" duration="7931000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209762000" />
+    <option name="totallyTimeSpent" value="209897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -618,13 +618,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/wx/ab.jpg" />
     <entry file="file://$PROJECT_DIR$/bin/wx/doodle.png" />
-    <entry file="file://$PROJECT_DIR$/bin/tuling.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/wx/wxEventHand.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -774,22 +767,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/wx/wxMsgHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/wx/wxKefu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -827,10 +804,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/wx/wxMsgHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/tuling.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/chat/ChatService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        <state relative-caret-position="319">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
           <folding>
             <element signature="e#0#38#0" expanded="false" />
             <element signature="e#440#500#0" expanded="false" />

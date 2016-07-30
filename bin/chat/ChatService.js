@@ -30,7 +30,10 @@ function init(server) {
     });
 }
 function sendMsg(msg) {
-    io.sockets.emit('wx', msg.Content);
+    io.sockets.emit('wx', {
+        username: "renkun",
+            message: msg.Content
+    });
     console.log("sendMsg"+msg.Content);
 }
 

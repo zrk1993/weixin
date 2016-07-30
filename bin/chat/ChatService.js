@@ -30,6 +30,7 @@ function init(server) {
 }
 function sendMsg(msg) {
     io.sockets.emit('wx', msg);
+    console.log("sendMsg"+msg);
 }
 
 

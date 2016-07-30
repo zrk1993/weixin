@@ -17,7 +17,7 @@ function init(server) {
         socket.emit('connect', "接入成功");
         console.log("接入成功");
         socket.on('add user', function (username) {
-            console.log("username"+username);
+            console.log(username);
             socket.emit('login', {
                 numUsers: "name:" + username
             })
@@ -30,7 +30,7 @@ function init(server) {
     });
 }
 function sendMsg(msg) {
-    io.sockets.emit('wx', msg);
+    io.sockets.emit('wx', msg.Content);
     console.log("sendMsg"+msg.Content);
 }
 

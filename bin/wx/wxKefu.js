@@ -13,7 +13,7 @@ function isConnect(msg) {
     return true;
 }
 function sendMsg(openid) {
-    return true;
+    
 }
 function acceptMsg(msg) {
     ChatService.sendMsg(msg)

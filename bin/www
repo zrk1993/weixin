@@ -17,7 +17,7 @@ var port = config.port;
 app.set('port', port);
 var server = http.createServer(app);
 
-//ChatService(server);
+ChatService.init(server);
 
 server.listen(port);
 server.on('error', onError);

@@ -2,6 +2,7 @@
   <dictionary name="RK">
     <words>
       <w>accesstoken</w>
+      <w>addcustomer</w>
       <w>addmenu</w>
       <w>appid</w>
       <w>appsecret</w>
@@ -10,9 +11,11 @@
       <w>echostr</w>
       <w>editmenu</w>
       <w>errcode</w>
+      <w>getcustomer</w>
       <w>getsource</w>
       <w>imgsource</w>
       <w>kefu</w>
+      <w>kuefus</w>
       <w>multer</w>
       <w>mysession</w>
       <w>qglrq</w>

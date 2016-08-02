@@ -21,7 +21,7 @@ function init(server) {
     io.on('connection', function (socket) {
         socket.on('login', function (username) {
             console.log("login"+username);
-            if(login(username,password)){
+            if(login(username)){
                 kefus.set(username,new Kefu(username,1,socket.id));
                 console.log("当前在线数："+kefus.count());
                 socket.emit('login',
@@ -72,7 +72,7 @@ function  sendMsg2Kefu(kefuname,msg) {
         console.log("message"+msg);
     }
 }
-function login(username,password) {
+function login(username) {
     return true;
 }
 module.exports = ChatService

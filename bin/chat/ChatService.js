@@ -69,7 +69,7 @@ function allotCustomer(customer) {
 function  sendMsg2Kefu(kefuname,msg) {
     var kefu=kefus.get(kefuname);
     if(kefu){
-        io.sockets.socket(kefu.socketId).emit('message', msg);
+        io.to(socket.id).emit('message', msg);
         console.log("message"+msg);
     }else {
         console.log("没有客服");

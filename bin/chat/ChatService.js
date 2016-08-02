@@ -51,8 +51,8 @@ function getCustomer(openid) {
     var customer=Customers.get(openid);
     if(customer){return customer}
     else {
-        customer=new Customer(openid,0,null);//创建客户，并加入到Customers
-        Customers.set(openid,Date.now(),customer);
+        customer=new Customer(openid,Date.now(),null);//创建客户，并加入到Customers
+        Customers.set(openid,customer);
         return getCustomer(openid);
     }
 }

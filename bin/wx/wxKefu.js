@@ -18,10 +18,10 @@ function isConnect(msg) {
 function sendMsg(wxKefuMsg) {
     var api="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";    
     accessToken.getAccessToken(function (AccessToken) {
-        request.post(util.format(api,accessToken), wxKefuMsg)
+        request.post(util.format(api,AccessToken), wxKefuMsg)
     });
 }
 function acceptMsg(msg) {
     ChatService.sendMsg(msg)
 }
-module.exports=kefu
+module.exports=kefu;

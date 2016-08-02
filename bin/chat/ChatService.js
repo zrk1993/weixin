@@ -5,11 +5,12 @@ var socket_io = require('socket.io');
 var wxKefu = require('../wx/wxKefu');
 var Kefu=require('./Kufu');
 var Customer=require('./Customer');
-var Map =require('../util/Map');
+var HashMap =require('hashmap');
 
 var io;
-var sockets = [];
-var kefus=new Map();
+var kefus=new HashMap();
+var Customers=new HashMap();
+
 var ChatService = {
     init: init,
     sendMsg: sendMsg
@@ -18,40 +19,57 @@ var ChatService = {
 function init(server) {
     io = socket_io(server, null);
     io.on('connection', function (socket) {
-        socket.on('login', function (username,password) {
-            console.log("login"+username)
+        socket.on('login', function (username) {
+            console.log("login"+username);
             if(login(username,password)){
-                kefus.put(username,new Kefu(username,1,socket.id));
+                kefus.set(username,new Kefu(username,1,socket.id));
+                console.log("当前在线数："+kefus.count());
                 socket.emit('login',
-                    {
-                        state: 1
-                    }
+                    {"errcode":0,"errmsg":"ok"}
                 );
             }else {
                 socket.emit('login',
-                    {
-                        state: 0
-                    }
+                    {"errcode":1,"errmsg":"err"}
                 );
+                console.log("login fail");
             }
         });
-        socket.on('message', function (data) {
+        socket.on('message', function (data) {            
             wxKefu.sendMsg(data);
-            console.log("message"+data)
+            console.log("message"+data);
         });
     });
 }
 function sendMsg(msg) {
-    kefus.each(function (username,Kefu) {
-        var Customer=Kefu.customers.get(msg.openid);//从客服服务对象里根据openid,获取客户
-        if(Customer){
-            io.sockets.socket(Kefu.socketId).emit('message', msg);
-            console.log("sendMsg"+msg)
-        }else {
-            Kefu.customers.put(msg.openid,new Customer(msg.openid,0));
-            sendMsg(msg);
-        }
-    });
+    var customer=getCustomer(msg.FromUserName);
+    allotCustomer(customer);
+    sendMsg2Kefu(customer.kefuname,msg);
+}
+//根据openid从容器里找出客户
+function getCustomer(openid) {
+    var customer=Customers.get(openid);
+    if(customer){return customer}
+    else {
+        customer=new Customer(openid,0,null);//创建客户，并加入到Customers
+        Customers.set(openid,Date.now(),customer);
+        return getCustomer(openid);
+    }
+}
+//将客户分发给合适的客服
+function allotCustomer(customer) {
+    for(var i=0,keys=kefus.keys();i<keys.length;i++){
+        kefus.get(keys[i]).customers.set(customer.openid,customer);
+        customer.kefuname=kefus.get(keys[i]).name;
+        return kefus.get(keys[i]).customers.has(customer.openid)
+    }
+}
+//根据客服名字，给他发消息
+function  sendMsg2Kefu(kefuname,msg) {
+    var kefu=kefus.get(kefuname);
+    if(kefu){
+        io.sockets.socket(kefu.socketId).emit('message', msg);
+        console.log("message"+msg);
+    }
 }
 function login(username,password) {
     return true;

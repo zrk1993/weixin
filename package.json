@@ -18,6 +18,7 @@
     "lowdb":"latest",
     "async":"latest",
     "request":"latest",
-    "socket.io":"latest"
+    "socket.io":"latest",
+    "hashmap":"latest"
   }
 }

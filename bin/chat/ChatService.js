@@ -36,7 +36,7 @@ function init(server) {
         });
         socket.on('message', function (data) {
             console.log("message"+data);
-            wxKefu.sendMsg(data)
+            wxKefu.sendWxMsg(data)
         });
     });
 }

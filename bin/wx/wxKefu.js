@@ -18,6 +18,7 @@ function isConnect(msg) {
 function sendMsg(wxKefuMsg) {
     var api="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";    
     accessToken.getAccessToken(function (AccessToken) {
+        console.log("sendMsg"+wxKefuMsg);
         request.post(util.format(api,AccessToken), wxKefuMsg)
     });
 }

@@ -34,13 +34,14 @@ function init(server) {
                 console.log("login fail");
             }
         });
-        socket.on('message', function (data) {            
-            wxKefu.sendMsg(data);
+        socket.on('message', function (data) {
             console.log("message"+data);
+            wxKefu.sendMsg(data)
         });
     });
 }
 function sendMsg(msg) {
+    console.log("message"+msg);
     var customer=getCustomer(msg.FromUserName);
     allotCustomer(customer);
     sendMsg2Kefu(customer.kefuname,msg);
@@ -70,6 +71,8 @@ function  sendMsg2Kefu(kefuname,msg) {
     if(kefu){
         io.sockets.socket(kefu.socketId).emit('message', msg);
         console.log("message"+msg);
+    }else {
+        console.log("没有客服");
     }
 }
 function login(username) {

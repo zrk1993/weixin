@@ -61,7 +61,8 @@ function allotCustomer(customer) {
         kefus.get(keys[i]).customers.set(customer.openid,customer);
         customer.kefuname=kefus.get(keys[i]).name;
         return kefus.get(keys[i]).customers.has(customer.openid)
-    }
+    };
+    console.log("在线客服："+kefus.count());
 }
 //根据客服名字，给他发消息
 function  sendMsg2Kefu(kefuname,msg) {

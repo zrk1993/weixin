@@ -2,10 +2,10 @@
  * Created by RK on 2016/7/30.
  */
 var socket_io = require('socket.io');
-var wxKefu = require('../wx/wxKefu');
 var Kefu=require('./Kufu');
 var Customer=require('./Customer');
 var HashMap =require('hashmap');
+var accessToken=require('../wx/accessToken');
 
 var io;
 var kefus=new HashMap();
@@ -36,7 +36,7 @@ function init(server) {
         });
         socket.on('message', function (data) {
             console.log("message"+data);
-            wxKefu.sendWxMsg("qqq")
+            sendMsg2Wx(data);
         });
     });
 }
@@ -67,7 +67,6 @@ function allotCustomer(customer) {
     if(kefus.count()){
         allotCustomer2kefu(customer,kefus.get(kefus.keys()[0]).name)
     }else {
-        wxKefu.sendWxMsg("");
         console.log("在线客服："+kefus.count()); 
     }    
 }
@@ -86,6 +85,16 @@ function  sendMsg2Kefu(kefuname,enent,msg) {
     }else {
         console.log("没有客服");
     }
+}
+//发信息get微信
+function  sendMsg2Wx(msg) {
+    var api="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";
+    accessToken.getAccessToken(function (AccessToken) {
+        console.log("sendMsg"+msg);
+        request.post({url: api, body: msg}, function optionalCallback(err, httpResponse, body) {
+            console.log(body);
+        });
+    });
 }
 function login(username) {
     return true;

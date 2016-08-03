@@ -19,7 +19,9 @@ function sendWxMsg(wxKefuMsg) {
     var api="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";    
     accessToken.getAccessToken(function (AccessToken) {
         console.log("sendMsg"+wxKefuMsg);
-        request.post(util.format(api,AccessToken), wxKefuMsg)
+        request.post({url: api, body: wxKefuMsg}, function optionalCallback(err, httpResponse, body) {
+            console.log(body);
+        });
     });
 }
 function acceptMsg(msg) {

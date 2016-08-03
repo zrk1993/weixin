@@ -36,7 +36,7 @@ function init(server) {
         });
         socket.on('message', function (data) {
             console.log("message"+data);
-            wxKefu.sendWxMsg(data)
+            wxKefu.sendWxMsg("qqq")
         });
     });
 }
@@ -44,7 +44,7 @@ function sendMsg(msg) {
     console.log("message"+msg);
     var customer=getCustomer(msg.FromUserName);
     allotCustomer(customer);
-    sendMsg2Kefu(customer.kefuname,msg);
+    sendMsg2Kefu(customer.kefuname,"message",msg);
 }
 //根据openid从容器里找出客户
 function getCustomer(openid) {
@@ -56,20 +56,32 @@ function getCustomer(openid) {
         return getCustomer(openid);
     }
 }
-//将客户分发给合适的客服
+//将客户，根据规则分发给合适的客服
 function allotCustomer(customer) {
     for(var i=0,keys=kefus.keys();i<keys.length;i++){
         kefus.get(keys[i]).customers.set(customer.openid,customer);
         customer.kefuname=kefus.get(keys[i]).name;
+        sendMsg2Kefu(kefus.get(keys[i]).name,"joinCustomer",customer);//通知客服，有客户加入
         return kefus.get(keys[i]).customers.has(customer.openid)
     };
-    console.log("在线客服："+kefus.count());
+    if(kefus.count()){
+        allotCustomer2kefu(customer,kefus.get(kefus.keys()[0]).name)
+    }else {
+        wxKefu.sendWxMsg("");
+        console.log("在线客服："+kefus.count()); 
+    }    
+}
+//根据客服名，将客户分发给客服
+function allotCustomer2kefu(customer,kefuname) {    
+        kefus.get(kefuname).customers.set(customer.openid,customer);
+        customer.kefuname=kefus.get(keys[i]).name;
+        sendMsg2Kefu(kefus.get(keys[i]).name,"joinCustomer",customer);//通知客服，有客户加入
 }
 //根据客服名字，给他发消息
-function  sendMsg2Kefu(kefuname,msg) {
+function  sendMsg2Kefu(kefuname,enent,msg) {
     var kefu=kefus.get(kefuname);
     if(kefu){
-        io.to(kefu.socketId).emit('message', msg);
+        io.to(kefu.socketId).emit(enent, msg);
         console.log("message"+msg);
     }else {
         console.log("没有客服");

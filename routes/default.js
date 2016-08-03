@@ -5,6 +5,7 @@ var tuling=require('../bin/tuling');
 const low = require('lowdb');
 const db = low('db.json');
 var async = require('async');
+var wxKefu=require('../bin/wx/wxKefu');
 
 var access=require('../bin/wx/accessToken');
 
@@ -46,4 +47,10 @@ router.get("/tuling", function (req,res) {
     res.send(JSON.parse(ans).text);
   });
 });
+
+router.get("/kf", function (req,res) {
+  wxKefu.sendWxMsg("qqqq")
+});
+
+module.exports=router;
 

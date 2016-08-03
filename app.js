@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(session({secret: 'mysession',cookie: {maxAge: 60 * 1000}}));
 
-//app.use('/', defaul);
+app.use('/', defaul);
 app.use('/weixin', weixin);
 app.use('/wxSource', wxSource);
 app.use('/wxSelfmenu', wxSelfmenu);

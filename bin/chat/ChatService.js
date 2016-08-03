@@ -5,6 +5,7 @@ var socket_io = require('socket.io');
 var Kefu=require('./Kufu');
 var Customer=require('./Customer');
 var HashMap =require('hashmap');
+var request = require('request');
 var accessToken=require('../wx/accessToken');
 
 var io;
@@ -88,10 +89,10 @@ function  sendMsg2Kefu(kefuname,enent,msg) {
 }
 //发信息get微信
 function  sendMsg2Wx(msg) {
-    var api="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";
+    var api="https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=";
     accessToken.getAccessToken(function (AccessToken) {
         console.log("sendMsg"+msg);
-        request.post({url: api, body: msg}, function optionalCallback(err, httpResponse, body) {
+        request.post({url: api+AccessToken, body: msg}, function optionalCallback(err, httpResponse, body) {
             console.log(body);
         });
     });

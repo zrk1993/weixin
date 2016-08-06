@@ -18,7 +18,7 @@ var ChatService = {
 function init(server) {
     io = socket_io(server, null);
     console.log("socket server started");
-    io.on('connect', function (socket) {
+    io.on('connection', function (socket) {
 
 
         console.log("connect"+socket.id);

@@ -23,13 +23,8 @@ ChatService.prototype.start=function () {
         socket.on("join",function (msg,fn) {
             console.log("join"+msg);
             console.log(typeof  msg)
-            var data = null;
-            try {
-                data = JSON.parse(msg);
-            } catch (e) {
-                data = msg;
-            }
-            var data=JSON.parse(msg);
+            var data = JSON.parse(msg);
+
             global.ChatService.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
             socket.name=data.openid;
             fn({openid:data.openid,email:data.email});
@@ -38,7 +33,7 @@ ChatService.prototype.start=function () {
 
         socket.on("leave",function (data) {
             console.log("leave"+data);
-            //data=JSON.parse(data);
+            data=JSON.parse(data);
             global.ChatService.chatClients.leave(data.openid)
         });
 
@@ -69,6 +64,9 @@ function ChatClients() {
 ChatClients.prototype.join=function (openid,ChatClient) {
     console.log("加入："+openid);
     this.Clients.set(openid,ChatClient);
+    this.Clients.forEach(function (key, value) {
+        console.log("当前在线openid:"+key)
+    });
 };
 ChatClients.prototype.leave=function (openid) {
     this.Clients.remove(openid);

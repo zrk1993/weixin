@@ -10,8 +10,8 @@ var wxKefuHand=require('./wxKefuHand');
 
 //wx分发处理,
 
-function wxMsgHandler(req,res) {
-    var msg;
+function wxMsgHandler(msg,res) {
+    
     if(wxEventHand(msg,res)){
         console.log("消息被事件处理系统拦截了");
     }
@@ -21,7 +21,6 @@ function wxMsgHandler(req,res) {
     else {
         console.log("消息发送给客服聊天系统");
         wxKefuHand(msg,res);
-
     }
 }
 

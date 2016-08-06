@@ -7,25 +7,28 @@ var HashMap =require('hashmap');
 
 function ChatService(server) {
     this.io = socket_io(server, null);//socket_io
-    this.chatClients=new ChatClients();//在线列表
+    this.chatClients=new ChatClients();//在线客户端列表
 }
 
 ChatService.prototype.start=function () {
     this.io.on('connect', function (socket) {
+
         console.log("connect"+socket.id);
 
         socket.on("disconnect",function () {
             console.log("disconnect"+socket.id);
+            this.chatClients.leave('a')
         });
 
-        socket.on("join",function (data) {
-            console.log("message"+data);
-            this.chatClients.join("a",new ChatClient('18094159838@163.com','a',socket.id))
+        socket.on("join",function (data,fn) {
+            console.log("join"+JSON.stringify(data));
+            this.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
+            fn({openid:data.openid,email:data.email});
         });
 
         socket.on("leave",function (data) {
-            console.log("message"+data);
-            this.chatClients.leave('a')
+            console.log("leave"+JSON.stringify(data));
+            this.chatClients.leave(data.openid)
         });
 
         socket.on("newMessage",function (data) {
@@ -37,7 +40,7 @@ ChatService.prototype.start=function () {
 ChatService.prototype.sendMsg=function (msg) {
     var chatClient=this.chatClients.get(msg.ToUserName,msg);
     if(client){
-        this.io.to(chatClient.socketid).emit("message",msg);
+        this.io.to(chatClient.socketid).emit("newMessage",msg);
         console.log("消息发送出："+JSON.stringify(msg))
     }else {
         //将消息保存，等下次登录是在发送
@@ -53,6 +56,7 @@ function ChatClients() {
     this.Clients=new HashMap();
 }
 ChatClients.prototype.join=function (openid,ChatClient) {
+    console.log("加入："+openid);
     this.Clients.set(openid,ChatClient);
 };
 ChatClients.prototype.leave=function (openid) {

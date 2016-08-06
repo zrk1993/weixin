@@ -44,8 +44,8 @@ ChatService.prototype.start=function () {
 };
 
 ChatService.prototype.sendMsg=function (msg) {
-    if(global.ChatService.chatClients.has(msg.ToUserName)){
-        var chatClient=global.ChatService.chatClients.get(msg.ToUserName,msg);
+    if(this.chatClients.Clients.has(msg.ToUserName)){
+        var chatClient=this.chatClients.Clients.get(msg.ToUserName,msg);
         this.io.to(chatClient.socketid).emit("newMessage",msg);
         console.log("消息发送出："+JSON.stringify(msg))
     }else {

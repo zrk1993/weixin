@@ -20,9 +20,16 @@ ChatService.prototype.start=function () {
             global.ChatService.chatClients.leave(socket.name)
         });
 
-        socket.on("join",function (data,fn) {
-            console.log("join"+data);
-            //data=JSON.parse(data);
+        socket.on("join",function (msg,fn) {
+            console.log("join"+msg);
+            console.log(typeof  msg)
+            var data = null;
+            try {
+                data = JSON.parse(msg);
+            } catch (e) {
+                data = msg;
+            }
+            var data=JSON.parse(msg);
             global.ChatService.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
             socket.name=data.openid;
             fn({openid:data.openid,email:data.email});

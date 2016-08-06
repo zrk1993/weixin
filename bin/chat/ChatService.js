@@ -64,8 +64,9 @@ function ChatClients() {
 ChatClients.prototype.join=function (openid,ChatClient) {
     console.log("加入："+openid);
     this.Clients.set(openid,ChatClient);
+    console.log("人数："+this.Clients.count());
     this.Clients.forEach(function (key, value) {
-        console.log("当前在线openid:"+key)
+        console.log("当前在线:"+key)
     });
 };
 ChatClients.prototype.leave=function (openid) {

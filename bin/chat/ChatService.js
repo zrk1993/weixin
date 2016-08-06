@@ -9,19 +9,19 @@ var request = require('request');
 var accessToken=require('../wx/accessToken');
 
 var io;
-var ChatClients=new HashMap();
+var kefus=new HashMap();
+var Customers=new HashMap();
 
 var ChatService = {
-    init: init
+    init: init,
+    sendMsg: sendMsg
 };
 //初始化，设置事件
 function init(server) {
     io = socket_io(server, null);
-    console.log("socket server started");
     io.on('connection', function (socket) {
 
-
-        console.log("connect"+socket.id);
+        console.log("connection"+socket.id);
 
         socket.on("disconnect",function () {
             console.log("disconnect"+socket.id);
@@ -30,27 +30,8 @@ function init(server) {
         socket.on("message",function (data) {
             console.log("message"+data);
         });
-
-        // socket.on('login', function (username) {
-        //     console.log("login"+username);
-        //     if(login(username)){
-        //         kefus.set(username,new Kefu(username,1,socket.id));
-        //         console.log("当前在线数："+kefus.count());
-        //         socket.emit('login',
-        //             {"errcode":0,"errmsg":"ok"}
-        //         );
-        //     }else {
-        //         socket.emit('login',
-        //             {"errcode":1,"errmsg":"err"}
-        //         );
-        //         console.log("login fail");
-        //     }
-        // });
-        // socket.on('message', function (data) {
-        //     console.log("message"+data);
-        //     sendMsg2Wx(data);
-        // });
     });
+
 }
 function sendMsg(msg) {
     console.log("message"+msg);

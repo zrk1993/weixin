@@ -17,18 +17,19 @@ ChatService.prototype.start=function () {
 
         socket.on("disconnect",function () {
             console.log("disconnect"+socket.id);
-            this.chatClients.leave('a')
+            global.ChatService.chatClients.leave(socket.name)
         });
 
         socket.on("join",function (data,fn) {
             console.log("join"+JSON.stringify(data));
-            this.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
+            global.ChatService.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
+            socket.name=data.openid;
             fn({openid:data.openid,email:data.email});
         });
 
         socket.on("leave",function (data) {
             console.log("leave"+JSON.stringify(data));
-            this.chatClients.leave(data.openid)
+            global.ChatService.chatClients.leave(data.openid)
         });
 
         socket.on("newMessage",function (data) {
@@ -40,7 +41,7 @@ ChatService.prototype.start=function () {
 ChatService.prototype.sendMsg=function (msg) {
     var chatClient=this.chatClients.get(msg.ToUserName,msg);
     if(client){
-        this.io.to(chatClient.socketid).emit("newMessage",msg);
+        global.ChatService.io.to(chatClient.socketid).emit("newMessage",msg);
         console.log("消息发送出："+JSON.stringify(msg))
     }else {
         //将消息保存，等下次登录是在发送

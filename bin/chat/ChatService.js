@@ -19,6 +19,7 @@ var ChatService = {
 //初始化，设置事件
 function init(server) {
     io = socket_io(server, null);
+    console.log("socket server started");
     io.on('connection', function (socket) {
 
         console.log("connection"+socket.id);

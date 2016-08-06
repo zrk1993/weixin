@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'views')));
-app.use(session({secret: 'mysession',cookie: {maxAge: 60 * 1000}}));
+app.use(session({resave: false,saveUninitialized: true, secret: 'mysession',cookie: {maxAge: 60 * 1000}}));
 
 app.use('/', defaul);
 app.use('/weixin', weixin);

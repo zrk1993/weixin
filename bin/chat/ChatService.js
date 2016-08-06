@@ -20,25 +20,39 @@ var ChatService = {
 function init(server) {
     io = socket_io(server, null);
     io.on('connection', function (socket) {
-        socket.on('login', function (username) {
-            console.log("login"+username);
-            if(login(username)){
-                kefus.set(username,new Kefu(username,1,socket.id));
-                console.log("当前在线数："+kefus.count());
-                socket.emit('login',
-                    {"errcode":0,"errmsg":"ok"}
-                );
-            }else {
-                socket.emit('login',
-                    {"errcode":1,"errmsg":"err"}
-                );
-                console.log("login fail");
-            }
+
+        console.log("connection"+socket.id);
+
+        socket.on("disconnect",function () {
+            console.log("disconnect"+socket.id);
         });
-        socket.on('message', function (data) {
+
+        socket.on("message",function (data) {
             console.log("message"+data);
-            sendMsg2Wx(data);
         });
+
+        // socket.on('login', function (username) {
+        //     console.log("login"+username);
+        //     if(login(username)){
+        //         kefus.set(username,new Kefu(username,1,socket.id));
+        //         console.log("当前在线数："+kefus.count());
+        //         socket.emit('login',
+        //             {"errcode":0,"errmsg":"ok"}
+        //         );
+        //     }else {
+        //         socket.emit('login',
+        //             {"errcode":1,"errmsg":"err"}
+        //         );
+        //         console.log("login fail");
+        //     }
+        // });
+        // socket.on('message', function (data) {
+        //     console.log("message"+data);
+        //     sendMsg2Wx(data);
+        // });
+    });
+    io.on('disconnect', function () {
+        console.log("disconnect");
     });
 }
 function sendMsg(msg) {

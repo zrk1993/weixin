@@ -40,7 +40,7 @@ ChatService.prototype.start=function () {
 
 ChatService.prototype.sendMsg=function (msg) {
     var chatClient=this.chatClients.get(msg.ToUserName,msg);
-    if(client){
+    if(chatClient){
         global.ChatService.io.to(chatClient.socketid).emit("newMessage",msg);
         console.log("消息发送出："+JSON.stringify(msg))
     }else {

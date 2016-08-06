@@ -6,8 +6,8 @@ var HashMap =require('hashmap');
 var ChatClient =require('./ChatClient');
 
 function ChatService(server) {
-    this.io = socket_io(server, null);
-    this.chatClients=new ChatClients();
+    this.io = socket_io(server, null);//socket_io
+    this.chatClients=new ChatClients();//在线列表
 }
 
 ChatService.prototype.start=function () {
@@ -32,6 +32,19 @@ ChatService.prototype.start=function () {
             console.log("message"+data);
         });
     });
+};
+
+ChatService.prototype.sendMsg=function (openid, msg) {
+    var client=this.chatClients.get(openid);
+    if(client){
+        client.send(msg);
+    }else {
+        //将消息保存，等下次登录是在发送
+        this.saveMsg(openid,msg);
+    }
+};
+ChatService.prototype.saveMsg=function (openid,msg) {
+    console.log("消息保存起来了："+JSON.stringify(msg))
 };
 
 //在线列表

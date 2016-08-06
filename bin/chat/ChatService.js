@@ -21,7 +21,7 @@ ChatService.prototype.start=function () {
         });
 
         socket.on("join",function (data,fn) {
-            console.log("join"+JSON.stringify(data));
+            console.log("join"+data);
             data=JSON.parse(data);
             global.ChatService.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
             socket.name=data.openid;
@@ -30,7 +30,7 @@ ChatService.prototype.start=function () {
         });
 
         socket.on("leave",function (data) {
-            console.log("leave"+JSON.stringify(data));
+            console.log("leave"+data);
             data=JSON.parse(data);
             global.ChatService.chatClients.leave(data.openid)
         });

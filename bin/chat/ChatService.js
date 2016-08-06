@@ -22,13 +22,16 @@ ChatService.prototype.start=function () {
 
         socket.on("join",function (data,fn) {
             console.log("join"+JSON.stringify(data));
+            data=JSON.parse(data);
             global.ChatService.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
             socket.name=data.openid;
             fn({openid:data.openid,email:data.email});
+            //取出保存的消息，发送给客户端
         });
 
         socket.on("leave",function (data) {
             console.log("leave"+JSON.stringify(data));
+            data=JSON.parse(data);
             global.ChatService.chatClients.leave(data.openid)
         });
 

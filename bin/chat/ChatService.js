@@ -43,11 +43,10 @@ ChatService.prototype.start=function () {
     });
 };
 
-ChatService.prototype.sendMsg=function (msg) {
-    var chatClient=global.ChatService.chatClients.get(msg.ToUserName,msg);
-    console.log("ToUserName"+msg.ToUserName);
-    if(chatClient){
-        global.ChatService.io.to(chatClient.socketid).emit("newMessage",msg);
+ChatService.prototype.sendMsg=function (msg) {   
+    if(this.chatClients.has(msg.ToUserName)){
+        var chatClient=global.ChatService.chatClients.get(msg.ToUserName,msg);
+        this.io.to(chatClient.socketid).emit("newMessage",msg);
         console.log("消息发送出："+JSON.stringify(msg))
     }else {
         //将消息保存，等下次登录是在发送

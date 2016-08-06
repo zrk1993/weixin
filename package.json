@@ -19,6 +19,7 @@
     "async":"latest",
     "request":"latest",
     "socket.io":"latest",
-    "hashmap":"latest"
+    "hashmap":"latest",
+    "promise":"latest"
   }
 }

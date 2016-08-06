@@ -6,6 +6,7 @@ const low = require('lowdb');
 const db = low('db.json');
 var async = require('async');
 var wxKefu=require('../bin/wx/wxKefu');
+var promise=require('promise');
 
 var access=require('../bin/wx/accessToken');
 
@@ -49,7 +50,11 @@ router.get("/tuling", function (req,res) {
 });
 
 router.get("/kf", function (req,res) {
-  wxKefu.sendWxMsg("qqqq")
+  var p=new promise(function (resolve,reject) {
+    resolve("promise");
+  }).then(function (res) {
+      res.end(res)
+  })
 });
 
 module.exports=router;

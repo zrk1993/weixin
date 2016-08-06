@@ -3,9 +3,8 @@ var router = express.Router();
 var URL = require('url');
 var crypto = require('crypto');
 var parseString = require('xml2js').parseString;
-var wxMsgHandler = require('../bin/wx/wxMsgHandler');
-
-var token = "zhengrenkun"; //微信验证token
+var wxMsgAllot = require('../bin/wx/wxMsgAllot');
+var config=require('../bin/config');
 
 //中间件 判断消息是否来自微信。并且将请求参数格式化为json,保存在 req.arg
 router.use('/',function (req,res,next) {
@@ -34,12 +33,13 @@ router.post('/', function(req, res) {
     });
     req.on("end",function(){
         var data= Buffer.concat(arr).toString();
+        
         parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
             if (err){
                 console.log("weixin.js xml to json err");
             }
             else {
-                wxMsgHandler(result.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
+                wxMsgAllot(result.xml,res);//微信消息处理. data.xml->微信消息....这里不负责发送响应。
             }
         });
     })
@@ -53,7 +53,7 @@ function isFromWeixin(arg) {
 
     /*  加密/校验流程如下： */
     //1. 将token、timestamp、nonce三个参数进行字典序排序
-    var array = [token,timestamp,nonce];
+    var array = [config.token,timestamp,nonce];
     array.sort();
     var str = array.toString().replace(/,/g,"");
 

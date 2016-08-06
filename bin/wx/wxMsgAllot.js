@@ -19,8 +19,9 @@ function wxMsgHandler(req,res) {
         console.log("消息被关键字系统拦截了");
     }
     else {
-        wxKefuHand(msg,res);
         console.log("消息发送给客服聊天系统");
+        wxKefuHand(msg,res);
+
     }
 }
 

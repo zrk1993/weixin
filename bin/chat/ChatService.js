@@ -3,7 +3,7 @@
  */
 var socket_io = require('socket.io');
 var HashMap =require('hashmap');
-var ChatClient =require('./ChatClient');
+
 
 function ChatService(server) {
     this.io = socket_io(server, null);//socket_io
@@ -34,20 +34,21 @@ ChatService.prototype.start=function () {
     });
 };
 
-ChatService.prototype.sendMsg=function (openid, msg) {
-    var client=this.chatClients.get(openid);
+ChatService.prototype.sendMsg=function (msg) {
+    var chatClient=this.chatClients.get(msg.ToUserName,msg);
     if(client){
-        client.send(msg);
+        this.io.to(chatClient.socketid).emit("message",msg);
+        console.log("消息发送出："+JSON.stringify(msg))
     }else {
         //将消息保存，等下次登录是在发送
-        this.saveMsg(openid,msg);
+        this.saveMsg(msg);
     }
 };
-ChatService.prototype.saveMsg=function (openid,msg) {
+ChatService.prototype.saveMsg=function (msg) {
     console.log("消息保存起来了："+JSON.stringify(msg))
 };
 
-//在线列表
+//在线客户端列表
 function ChatClients() {
     this.Clients=new HashMap();
 }
@@ -60,5 +61,12 @@ ChatClients.prototype.leave=function (openid) {
 ChatClients.prototype.get=function (openid) {
     this.Clients.get(openid);
 };
+
+//客户端
+function ChatClient(accountname,openid,socketid) {
+    this.accountname=accountname;
+    this.openid=openid;
+    this.socketid=socketid;
+}
 
 module.exports = ChatService;

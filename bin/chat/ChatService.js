@@ -9,20 +9,19 @@ var request = require('request');
 var accessToken=require('../wx/accessToken');
 
 var io;
-var kefus=new HashMap();
-var Customers=new HashMap();
+var ChatClients=new HashMap();
 
 var ChatService = {
-    init: init,
-    sendMsg: sendMsg
+    init: init
 };
 //初始化，设置事件
 function init(server) {
     io = socket_io(server, null);
     console.log("socket server started");
-    io.on('connection', function (socket) {
+    io.on('connect', function (socket) {
 
-        console.log("connection"+socket.id);
+
+        console.log("connect"+socket.id);
 
         socket.on("disconnect",function () {
             console.log("disconnect"+socket.id);
@@ -51,9 +50,6 @@ function init(server) {
         //     console.log("message"+data);
         //     sendMsg2Wx(data);
         // });
-    });
-    io.on('disconnect', function () {
-        console.log("disconnect");
     });
 }
 function sendMsg(msg) {

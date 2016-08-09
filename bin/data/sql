@@ -1,0 +1,38 @@
+CREATE TABLE `authorizer_info` (
+  `email` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `appid` varchar(255) NOT NULL DEFAULT '' COMMENT '授权方appid',
+  `nick_name` varchar(255) DEFAULT NULL COMMENT '授权方昵称',
+  `head_img` varchar(255) DEFAULT NULL COMMENT '授权方头像',
+  `service_type_info` varchar(255) DEFAULT NULL COMMENT '授权方公众号类型',
+  `verify_type_info` varchar(255) DEFAULT NULL COMMENT '授权方认证类型',
+  `user_name` varchar(255) DEFAULT NULL COMMENT '授权方公众号的原始ID',
+  `alias` varchar(255) DEFAULT NULL COMMENT '授权方公众号所设置的微信号',
+  `business_info` varchar(255) DEFAULT NULL COMMENT '功能的开通状况',
+  `qrcode_url` varchar(255) DEFAULT NULL COMMENT '二维码图片的URL',
+  `authorization_info` varchar(255) DEFAULT NULL COMMENT '授权信息',
+  `func_info` varchar(255) DEFAULT NULL COMMENT '权限集列表',
+  PRIMARY KEY (`appid`,`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='授权方的公众号帐号基本信息';
+
+CREATE TABLE `wx_message_cache` (
+  `openid` varchar(255) NOT NULL DEFAULT '0' COMMENT '消息的ToUserName',
+  `message` text NOT NULL COMMENT '消息内容json格式',
+  PRIMARY KEY (`openid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信客服消息';
+
+CREATE TABLE `wx_auto_reply` (
+  `openid` varchar(255) NOT NULL DEFAULT '' COMMENT 'openid(Tousername)',
+  `keyword` text COMMENT '自动回复关键字json',
+  `event` text COMMENT '微信事件格式json',
+  PRIMARY KEY (`openid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信消息自动回复';
+
+CREATE TABLE `user_account` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL DEFAULT '' COMMENT '登录邮箱',
+  `password` varchar(20) NOT NULL DEFAULT '' COMMENT '登录密码',
+  `signuptime` varchar(50) DEFAULT NULL COMMENT '注册时间',
+  `name` varchar(50) DEFAULT NULL COMMENT '姓名',
+  `tel` varchar(20) DEFAULT NULL COMMENT '手机',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网站的用户信息表';

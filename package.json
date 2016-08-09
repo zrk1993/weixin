@@ -20,6 +20,7 @@
     "request":"latest",
     "socket.io":"latest",
     "hashmap":"latest",
-    "promise":"latest"
+    "promise":"latest",
+    "mysql":"latest"
   }
 }

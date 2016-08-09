@@ -4,7 +4,6 @@
 var socket_io = require('socket.io');
 var HashMap =require('hashmap');
 
-
 function ChatService(server) {
     this.io = socket_io(server, null);//socket_io
     this.chatClients=new ChatClients();//在线客户端列表
@@ -22,9 +21,7 @@ ChatService.prototype.start=function () {
 
         socket.on("join",function (msg,fn) {
             console.log("join"+msg);
-            console.log(typeof  msg)
             var data = JSON.parse(msg);
-
             global.ChatService.chatClients.join(data.openid,new ChatClient(data.email,data.openid,socket.id));
             socket.name=data.openid;
             fn({openid:data.openid,email:data.email});
@@ -54,7 +51,7 @@ ChatService.prototype.sendMsg=function (msg) {
     }
 };
 ChatService.prototype.saveMsg=function (msg) {
-    console.log("消息保存起来了："+JSON.stringify(msg))
+    console.log("消息保存起来了："+msg.ToUserName+JSON.stringify(msg));
 };
 
 //在线客户端列表
@@ -62,12 +59,7 @@ function ChatClients() {
     this.Clients=new HashMap();
 }
 ChatClients.prototype.join=function (openid,ChatClient) {
-    console.log("加入："+openid);
     this.Clients.set(openid,ChatClient);
-    console.log("人数："+this.Clients.count());
-    this.Clients.forEach(function (value, key) {
-        console.log("当前在线:"+key)
-    });
 };
 ChatClients.prototype.leave=function (openid) {
     this.Clients.remove(openid);

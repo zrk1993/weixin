@@ -31,7 +31,7 @@ CREATE TABLE `user_account` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL DEFAULT '' COMMENT '登录邮箱',
   `password` varchar(20) NOT NULL DEFAULT '' COMMENT '登录密码',
-  `signuptime` varchar(50) DEFAULT NULL COMMENT '注册时间',
+  `signUpTime` varchar(50) DEFAULT NULL COMMENT '注册时间',
   `name` varchar(50) DEFAULT NULL COMMENT '姓名',
   `tel` varchar(20) DEFAULT NULL COMMENT '手机',
   PRIMARY KEY (`Id`)

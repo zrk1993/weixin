@@ -16,5 +16,6 @@ function connection() {
 var dbHelper={
     getConnection:connection
 };
+//mongoose的连接一个就好
 
 module.exports=dbHelper;

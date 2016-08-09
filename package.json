@@ -21,6 +21,6 @@
     "socket.io":"latest",
     "hashmap":"latest",
     "promise":"latest",
-    "mysql":"latest"
+    "mongoose":"latest"
   }
 }

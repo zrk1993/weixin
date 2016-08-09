@@ -6,11 +6,13 @@
       <w>addmenu</w>
       <w>appid</w>
       <w>appsecret</w>
+      <w>authorizer</w>
       <w>crypto</w>
       <w>defaul</w>
       <w>echostr</w>
       <w>editmenu</w>
       <w>errcode</w>
+      <w>funcscope</w>
       <w>getcustomer</w>
       <w>getsource</w>
       <w>imgsource</w>
@@ -20,6 +22,7 @@
       <w>multer</w>
       <w>mysession</w>
       <w>qglrq</w>
+      <w>qrcode</w>
       <w>resave</w>
       <w>selfmenu</w>
       <w>selmenu</w>

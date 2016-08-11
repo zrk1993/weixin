@@ -51,7 +51,7 @@ router.post('/getAccessToken', function(req, res) {
 });
 
 router.get('/test', function(req, res) {
-    var db = myMongoose.connection;
+    var db = myMongoose;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function (callback) {
         // yay!

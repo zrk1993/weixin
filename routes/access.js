@@ -50,7 +50,7 @@ router.post('/getAccessToken', function(req, res) {
 });
 
 router.get('/test', function(req, res) {
-    var a=req.query.a;
+    var a=req.body;
     res.end(a)
 });
 router.post('/test', function(req, res) {

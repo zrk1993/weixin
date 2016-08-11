@@ -2,20 +2,8 @@
  * Created by RK on 2016/7/12.
  */
 var config=require('../config');
-var mysql = require('mysql');
+var mongoose = require('mongoose');
 
-function connection() {
-    var connection = mysql.createConnection({
-        host     : config.dbHost,
-        user     : config.dbUser,
-        password : config.dbPassword,
-        database : config.database
-    });
-}
+mongoose.connect('mongodb://localhost/mydb');
 
-var dbHelper={
-    getConnection:connection
-};
-//mongoose的连接一个就好
-
-module.exports=dbHelper;
+module.exports = mongoose;

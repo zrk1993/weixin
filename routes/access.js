@@ -46,22 +46,17 @@ router.post('/signUp', function(req, res) {
 
 //用户获取accesstoken
 router.post('/getAccessToken', function(req, res) {
-    var arg = req.arg;
-    var arr = [];
-    req.on("data",function(data){
-        arr.push(data);
-    });
-    req.on("end",function(){
-        var data= Buffer.concat(arr).toString();
 
-        parseString(data, { explicitArray : false, ignoreAttrs : true }, function (err, result) {
-            if (err){
-                console.log("weixin.js xml to json err");
-            }
-            else {
-            }
-        });
-    })
 });
+
+router.get('/test', function(req, res) {
+    var a=req.query.a;
+    res.end(a)
+});
+router.post('/test', function(req, res) {
+    var a=req.query.a;
+    res.end(a)
+});
+
 
 module.exports = router;

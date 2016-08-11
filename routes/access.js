@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var parseString = require('xml2js').parseString;
+var myMongoose=require('../bin/data/myMongoose');
 
 //用户登录
 router.post('/signIn', function(req, res) {
@@ -50,8 +51,14 @@ router.post('/getAccessToken', function(req, res) {
 });
 
 router.get('/test', function(req, res) {
-    var a=req.body;
-    res.end(a)
+    var db = myMongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function (callback) {
+        // yay!
+        console.log("open");
+        var a=req.body;
+        res.end(a)
+    });
 });
 router.post('/test', function(req, res) {
     var a=req.query.a;

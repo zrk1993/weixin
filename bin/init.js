@@ -8,7 +8,7 @@ var init=function() {
     mongoose.connection.on('error', function () {
         console.log('mongodb open err');
     });
-    mongoose.once('open', function (callback) {
+    mongoose.connection.once('open', function (callback) {
         console.log('mongodb open succeed');
     });
 

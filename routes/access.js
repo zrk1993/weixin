@@ -75,8 +75,8 @@ router.get('/test', function(req, res) {
     });
 });
 router.post('/test', function(req, res) {
-    var a=req.query.a;
-    res.end(a)
+    res.write(JSON.parse(req.body.content));
+    res.write(JSON.parse("  ----"+req.params.a))
 });
 
 

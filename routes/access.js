@@ -4,7 +4,8 @@
 var express = require('express');
 var router = express.Router();
 var parseString = require('xml2js').parseString;
-var myMongoose=require('../bin/data/myMongoose');
+var mongoose=require('mongoose');
+var user_account_Schema=require('../bin/data/schema/user_account');
 
 //用户登录
 router.post('/signIn', function(req, res) {
@@ -51,13 +52,26 @@ router.post('/getAccessToken', function(req, res) {
 });
 
 router.get('/test', function(req, res) {
-    var db = myMongoose;
-    db.on('error', console.error.bind(console, 'connection error:'));
-    db.once('open', function (callback) {
-        // yay!
-        console.log("open");
-        var a=req.body;
-        res.end(a)
+    var user_account_model=mongoose.model("user_account",user_account_Schema);
+    var user_account_entity=new user_account_model({
+        email:'renkun@qq.com',
+        password:'zxcvbnm8',
+        signUpTime:'12209021',
+        name:'renkun',
+        tel:'1212121212'});
+    user_account_entity.save(function (err,userAccount) {
+        if(err){console.log("保存失败")}
+        else {
+            console.log(JSON.stringify(userAccount));
+        }
+    });
+    
+    user_account_model.find(function (err,userAccounts) {
+        if(err){
+            console.log('查询失败')
+        }else {
+            console.log(userAccounts);
+        }
     });
 });
 router.post('/test', function(req, res) {

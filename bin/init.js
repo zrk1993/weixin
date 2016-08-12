@@ -1,8 +1,11 @@
 
 var config = require('./config.js');
+var mongoose = require('mongoose');
+
 var init=function() {
-    var a=9;
+    
+    mongoose.connect('mongodb://localhost/mydb');
     
 
-}
+};
 module.exports = init;
